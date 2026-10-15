@@ -1,0 +1,1235 @@
+{
+ "source": "align_vo.py (wav2vec2-base-960h CTC)",
+ "lines": [
+  {
+   "text": "Imagina que manejas con un GPS que no se actualiza hace dos años.",
+   "start": 0.07,
+   "end": 4.19,
+   "words": [
+    {
+     "w": "Imagina",
+     "start": 0.07,
+     "end": 0.57
+    },
+    {
+     "w": "que",
+     "start": 0.57,
+     "end": 0.72
+    },
+    {
+     "w": "manejas",
+     "start": 0.72,
+     "end": 1.16
+    },
+    {
+     "w": "con",
+     "start": 1.16,
+     "end": 1.36
+    },
+    {
+     "w": "un",
+     "start": 1.36,
+     "end": 1.52
+    },
+    {
+     "w": "GPS",
+     "start": 1.52,
+     "end": 2.16,
+     "syl": [
+      [
+       1.52,
+       1.7
+      ],
+      [
+       1.7,
+       1.92
+      ],
+      [
+       1.92,
+       2.16
+      ]
+     ]
+    },
+    {
+     "w": "que",
+     "start": 2.16,
+     "end": 2.42
+    },
+    {
+     "w": "no",
+     "start": 2.42,
+     "end": 2.6
+    },
+    {
+     "w": "se",
+     "start": 2.6,
+     "end": 2.68
+    },
+    {
+     "w": "actualiza",
+     "start": 2.68,
+     "end": 3.34
+    },
+    {
+     "w": "hace",
+     "start": 3.34,
+     "end": 3.66
+    },
+    {
+     "w": "dos",
+     "start": 3.66,
+     "end": 4.0
+    },
+    {
+     "w": "años.",
+     "start": 4.0,
+     "end": 4.19
+    }
+   ]
+  },
+  {
+   "text": "Te lleva, sí… pero por calles que ya no existen.",
+   "start": 4.68,
+   "end": 8.14,
+   "words": [
+    {
+     "w": "Te",
+     "start": 4.68,
+     "end": 4.84
+    },
+    {
+     "w": "lleva,",
+     "start": 4.84,
+     "end": 5.25
+    },
+    {
+     "w": "sí…",
+     "start": 5.48,
+     "end": 5.83
+    },
+    {
+     "w": "pero",
+     "start": 6.24,
+     "end": 6.48
+    },
+    {
+     "w": "por",
+     "start": 6.48,
+     "end": 6.67
+    },
+    {
+     "w": "calles",
+     "start": 6.67,
+     "end": 7.06
+    },
+    {
+     "w": "que",
+     "start": 7.06,
+     "end": 7.26
+    },
+    {
+     "w": "ya",
+     "start": 7.26,
+     "end": 7.42
+    },
+    {
+     "w": "no",
+     "start": 7.42,
+     "end": 7.56
+    },
+    {
+     "w": "existen.",
+     "start": 7.56,
+     "end": 8.14
+    }
+   ]
+  },
+  {
+   "text": "Lo mismo le puede pasar a un modelo de crédito.",
+   "start": 8.47,
+   "end": 10.81,
+   "words": [
+    {
+     "w": "Lo",
+     "start": 8.47,
+     "end": 8.74
+    },
+    {
+     "w": "mismo",
+     "start": 8.74,
+     "end": 9.1
+    },
+    {
+     "w": "le",
+     "start": 9.1,
+     "end": 9.24
+    },
+    {
+     "w": "puede",
+     "start": 9.24,
+     "end": 9.48
+    },
+    {
+     "w": "pasar",
+     "start": 9.48,
+     "end": 9.84
+    },
+    {
+     "w": "a",
+     "start": 9.84,
+     "end": 9.88
+    },
+    {
+     "w": "un",
+     "start": 9.88,
+     "end": 10.04
+    },
+    {
+     "w": "modelo",
+     "start": 10.04,
+     "end": 10.3
+    },
+    {
+     "w": "de",
+     "start": 10.3,
+     "end": 10.44
+    },
+    {
+     "w": "crédito.",
+     "start": 10.44,
+     "end": 10.81
+    }
+   ]
+  },
+  {
+   "text": "Y la consecuencia es clara: si no se reentrena y no se puede explicar, deja de ser inclusivo.",
+   "start": 11.28,
+   "end": 17.37,
+   "words": [
+    {
+     "w": "Y",
+     "start": 11.28,
+     "end": 11.36
+    },
+    {
+     "w": "la",
+     "start": 11.36,
+     "end": 11.5
+    },
+    {
+     "w": "consecuencia",
+     "start": 11.5,
+     "end": 12.24
+    },
+    {
+     "w": "es",
+     "start": 12.24,
+     "end": 12.4
+    },
+    {
+     "w": "clara:",
+     "start": 12.4,
+     "end": 12.78
+    },
+    {
+     "w": "si",
+     "start": 13.11,
+     "end": 13.4
+    },
+    {
+     "w": "no",
+     "start": 13.4,
+     "end": 13.58
+    },
+    {
+     "w": "se",
+     "start": 13.58,
+     "end": 13.74
+    },
+    {
+     "w": "reentrena",
+     "start": 13.74,
+     "end": 14.45
+    },
+    {
+     "w": "y",
+     "start": 14.45,
+     "end": 14.68
+    },
+    {
+     "w": "no",
+     "start": 14.68,
+     "end": 14.84
+    },
+    {
+     "w": "se",
+     "start": 14.84,
+     "end": 14.96
+    },
+    {
+     "w": "puede",
+     "start": 14.96,
+     "end": 15.3
+    },
+    {
+     "w": "explicar,",
+     "start": 15.3,
+     "end": 15.8
+    },
+    {
+     "w": "deja",
+     "start": 16.03,
+     "end": 16.46
+    },
+    {
+     "w": "de",
+     "start": 16.46,
+     "end": 16.6
+    },
+    {
+     "w": "ser",
+     "start": 16.6,
+     "end": 16.78
+    },
+    {
+     "w": "inclusivo.",
+     "start": 16.78,
+     "end": 17.37
+    }
+   ]
+  },
+  {
+   "text": "Un modelo puede ser muy preciso el día que se lanza.",
+   "start": 17.8,
+   "end": 20.58,
+   "words": [
+    {
+     "w": "Un",
+     "start": 17.8,
+     "end": 17.94
+    },
+    {
+     "w": "modelo",
+     "start": 17.94,
+     "end": 18.4
+    },
+    {
+     "w": "puede",
+     "start": 18.4,
+     "end": 18.7
+    },
+    {
+     "w": "ser",
+     "start": 18.7,
+     "end": 18.96
+    },
+    {
+     "w": "muy",
+     "start": 18.96,
+     "end": 19.22
+    },
+    {
+     "w": "preciso",
+     "start": 19.22,
+     "end": 19.68
+    },
+    {
+     "w": "el",
+     "start": 19.68,
+     "end": 19.82
+    },
+    {
+     "w": "día",
+     "start": 19.82,
+     "end": 20.04
+    },
+    {
+     "w": "que",
+     "start": 20.04,
+     "end": 20.16
+    },
+    {
+     "w": "se",
+     "start": 20.16,
+     "end": 20.3
+    },
+    {
+     "w": "lanza.",
+     "start": 20.3,
+     "end": 20.58
+    }
+   ]
+  },
+  {
+   "text": "Pero el mundo cambia: los precios, los ingresos, las normas, los fraudes y la forma en que la gente paga.",
+   "start": 20.97,
+   "end": 27.88,
+   "words": [
+    {
+     "w": "Pero",
+     "start": 20.97,
+     "end": 21.16
+    },
+    {
+     "w": "el",
+     "start": 21.16,
+     "end": 21.28
+    },
+    {
+     "w": "mundo",
+     "start": 21.28,
+     "end": 21.64
+    },
+    {
+     "w": "cambia:",
+     "start": 21.64,
+     "end": 22.08
+    },
+    {
+     "w": "los",
+     "start": 22.37,
+     "end": 22.64
+    },
+    {
+     "w": "precios,",
+     "start": 22.64,
+     "end": 23.34
+    },
+    {
+     "w": "los",
+     "start": 23.34,
+     "end": 23.52
+    },
+    {
+     "w": "ingresos,",
+     "start": 23.52,
+     "end": 24.32
+    },
+    {
+     "w": "las",
+     "start": 24.32,
+     "end": 24.66
+    },
+    {
+     "w": "normas,",
+     "start": 24.66,
+     "end": 25.17
+    },
+    {
+     "w": "los",
+     "start": 25.42,
+     "end": 25.68
+    },
+    {
+     "w": "fraudes",
+     "start": 25.68,
+     "end": 26.26
+    },
+    {
+     "w": "y",
+     "start": 26.26,
+     "end": 26.36
+    },
+    {
+     "w": "la",
+     "start": 26.36,
+     "end": 26.48
+    },
+    {
+     "w": "forma",
+     "start": 26.58,
+     "end": 26.86
+    },
+    {
+     "w": "en",
+     "start": 26.86,
+     "end": 26.96
+    },
+    {
+     "w": "que",
+     "start": 26.96,
+     "end": 27.08
+    },
+    {
+     "w": "la",
+     "start": 27.08,
+     "end": 27.26
+    },
+    {
+     "w": "gente",
+     "start": 27.26,
+     "end": 27.56
+    },
+    {
+     "w": "paga.",
+     "start": 27.56,
+     "end": 27.88
+    }
+   ]
+  },
+  {
+   "text": "Si el modelo no se actualiza, sigue decidiendo con datos de un mundo que ya no existe.",
+   "start": 28.19,
+   "end": 33.0,
+   "words": [
+    {
+     "w": "Si",
+     "start": 28.19,
+     "end": 28.34
+    },
+    {
+     "w": "el",
+     "start": 28.34,
+     "end": 28.42
+    },
+    {
+     "w": "modelo",
+     "start": 28.42,
+     "end": 28.9
+    },
+    {
+     "w": "no",
+     "start": 28.9,
+     "end": 29.08
+    },
+    {
+     "w": "se",
+     "start": 29.08,
+     "end": 29.16
+    },
+    {
+     "w": "actualiza,",
+     "start": 29.16,
+     "end": 29.88
+    },
+    {
+     "w": "sigue",
+     "start": 29.88,
+     "end": 30.28
+    },
+    {
+     "w": "decidiendo",
+     "start": 30.28,
+     "end": 30.9
+    },
+    {
+     "w": "con",
+     "start": 30.9,
+     "end": 31.08
+    },
+    {
+     "w": "datos",
+     "start": 31.08,
+     "end": 31.42
+    },
+    {
+     "w": "de",
+     "start": 31.42,
+     "end": 31.78
+    },
+    {
+     "w": "un",
+     "start": 31.78,
+     "end": 31.9
+    },
+    {
+     "w": "mundo",
+     "start": 31.9,
+     "end": 32.08
+    },
+    {
+     "w": "que",
+     "start": 32.08,
+     "end": 32.29
+    },
+    {
+     "w": "ya",
+     "start": 32.29,
+     "end": 32.46
+    },
+    {
+     "w": "no",
+     "start": 32.46,
+     "end": 32.6
+    },
+    {
+     "w": "existe.",
+     "start": 32.6,
+     "end": 33.0
+    }
+   ]
+  },
+  {
+   "text": "A eso se le llama model drift.",
+   "start": 33.45,
+   "end": 35.31,
+   "words": [
+    {
+     "w": "A",
+     "start": 33.45,
+     "end": 33.7
+    },
+    {
+     "w": "eso",
+     "start": 33.7,
+     "end": 33.94
+    },
+    {
+     "w": "se",
+     "start": 33.94,
+     "end": 34.1
+    },
+    {
+     "w": "le",
+     "start": 34.1,
+     "end": 34.22
+    },
+    {
+     "w": "llama",
+     "start": 34.22,
+     "end": 34.61
+    },
+    {
+     "w": "model",
+     "start": 34.76,
+     "end": 35.1
+    },
+    {
+     "w": "drift.",
+     "start": 35.1,
+     "end": 35.31
+    }
+   ]
+  },
+  {
+   "text": "Un ejemplo: un cliente se atrasa en un pago justo después de una subida fuerte de la inflación.",
+   "start": 35.86,
+   "end": 41.14,
+   "words": [
+    {
+     "w": "Un",
+     "start": 35.86,
+     "end": 36.02
+    },
+    {
+     "w": "ejemplo:",
+     "start": 36.02,
+     "end": 36.28
+    },
+    {
+     "w": "un",
+     "start": 36.78,
+     "end": 36.94
+    },
+    {
+     "w": "cliente",
+     "start": 36.94,
+     "end": 37.38
+    },
+    {
+     "w": "se",
+     "start": 37.38,
+     "end": 37.58
+    },
+    {
+     "w": "atrasa",
+     "start": 37.58,
+     "end": 37.82
+    },
+    {
+     "w": "en",
+     "start": 37.82,
+     "end": 37.96
+    },
+    {
+     "w": "un",
+     "start": 37.96,
+     "end": 38.1
+    },
+    {
+     "w": "pago",
+     "start": 38.1,
+     "end": 38.5
+    },
+    {
+     "w": "justo",
+     "start": 38.5,
+     "end": 38.92
+    },
+    {
+     "w": "después",
+     "start": 38.92,
+     "end": 39.3
+    },
+    {
+     "w": "de",
+     "start": 39.3,
+     "end": 39.46
+    },
+    {
+     "w": "una",
+     "start": 39.46,
+     "end": 39.64
+    },
+    {
+     "w": "subida",
+     "start": 39.64,
+     "end": 40.06
+    },
+    {
+     "w": "fuerte",
+     "start": 40.06,
+     "end": 40.5
+    },
+    {
+     "w": "de",
+     "start": 40.5,
+     "end": 40.6
+    },
+    {
+     "w": "la",
+     "start": 40.6,
+     "end": 40.66
+    },
+    {
+     "w": "inflación.",
+     "start": 40.66,
+     "end": 41.14
+    }
+   ]
+  },
+  {
+   "text": "El modelo lo marca como riesgoso, pero el problema fue el contexto, no la persona.",
+   "start": 41.54,
+   "end": 46.77,
+   "words": [
+    {
+     "w": "El",
+     "start": 41.54,
+     "end": 41.68
+    },
+    {
+     "w": "modelo",
+     "start": 41.68,
+     "end": 42.14
+    },
+    {
+     "w": "lo",
+     "start": 42.14,
+     "end": 42.3
+    },
+    {
+     "w": "marca",
+     "start": 42.3,
+     "end": 42.58
+    },
+    {
+     "w": "como",
+     "start": 42.58,
+     "end": 42.82
+    },
+    {
+     "w": "riesgoso,",
+     "start": 42.82,
+     "end": 43.32
+    },
+    {
+     "w": "pero",
+     "start": 43.32,
+     "end": 43.96
+    },
+    {
+     "w": "el",
+     "start": 43.96,
+     "end": 44.08
+    },
+    {
+     "w": "problema",
+     "start": 44.08,
+     "end": 44.56
+    },
+    {
+     "w": "fue",
+     "start": 44.56,
+     "end": 44.71
+    },
+    {
+     "w": "el",
+     "start": 44.71,
+     "end": 44.97
+    },
+    {
+     "w": "contexto,",
+     "start": 44.97,
+     "end": 45.67
+    },
+    {
+     "w": "no",
+     "start": 45.89,
+     "end": 46.16
+    },
+    {
+     "w": "la",
+     "start": 46.16,
+     "end": 46.3
+    },
+    {
+     "w": "persona.",
+     "start": 46.3,
+     "end": 46.77
+    }
+   ]
+  },
+  {
+   "text": "¿Por qué te importa?",
+   "start": 47.22,
+   "end": 48.06,
+   "words": [
+    {
+     "w": "¿Por",
+     "start": 47.22,
+     "end": 47.38
+    },
+    {
+     "w": "qué",
+     "start": 47.38,
+     "end": 47.51
+    },
+    {
+     "w": "te",
+     "start": 47.51,
+     "end": 47.58
+    },
+    {
+     "w": "importa?",
+     "start": 47.58,
+     "end": 48.06
+    }
+   ]
+  },
+  {
+   "text": "Si tu equipo usa o supervisa estos modelos, no basta con saber cuánto aciertan en promedio.",
+   "start": 48.42,
+   "end": 53.91,
+   "words": [
+    {
+     "w": "Si",
+     "start": 48.42,
+     "end": 48.6
+    },
+    {
+     "w": "tu",
+     "start": 48.6,
+     "end": 48.76
+    },
+    {
+     "w": "equipo",
+     "start": 48.76,
+     "end": 49.11
+    },
+    {
+     "w": "usa",
+     "start": 49.11,
+     "end": 49.44
+    },
+    {
+     "w": "o",
+     "start": 49.44,
+     "end": 49.62
+    },
+    {
+     "w": "supervisa",
+     "start": 49.62,
+     "end": 50.26
+    },
+    {
+     "w": "estos",
+     "start": 50.26,
+     "end": 50.56
+    },
+    {
+     "w": "modelos,",
+     "start": 50.56,
+     "end": 51.08
+    },
+    {
+     "w": "no",
+     "start": 51.23,
+     "end": 51.46
+    },
+    {
+     "w": "basta",
+     "start": 51.46,
+     "end": 51.8
+    },
+    {
+     "w": "con",
+     "start": 51.8,
+     "end": 51.96
+    },
+    {
+     "w": "saber",
+     "start": 51.96,
+     "end": 52.28
+    },
+    {
+     "w": "cuánto",
+     "start": 52.42,
+     "end": 52.78
+    },
+    {
+     "w": "aciertan",
+     "start": 52.78,
+     "end": 53.32
+    },
+    {
+     "w": "en",
+     "start": 53.32,
+     "end": 53.4
+    },
+    {
+     "w": "promedio.",
+     "start": 53.4,
+     "end": 53.91
+    }
+   ]
+  },
+  {
+   "text": "Hay que saber dónde fallan, con quién y en qué momentos.",
+   "start": 54.24,
+   "end": 57.82,
+   "words": [
+    {
+     "w": "Hay",
+     "start": 54.24,
+     "end": 54.38
+    },
+    {
+     "w": "que",
+     "start": 54.38,
+     "end": 54.5
+    },
+    {
+     "w": "saber",
+     "start": 54.5,
+     "end": 55.02
+    },
+    {
+     "w": "dónde",
+     "start": 55.02,
+     "end": 55.44
+    },
+    {
+     "w": "fallan,",
+     "start": 55.44,
+     "end": 55.92
+    },
+    {
+     "w": "con",
+     "start": 56.14,
+     "end": 56.4
+    },
+    {
+     "w": "quién",
+     "start": 56.4,
+     "end": 56.8
+    },
+    {
+     "w": "y",
+     "start": 56.92,
+     "end": 57.04
+    },
+    {
+     "w": "en",
+     "start": 57.04,
+     "end": 57.28
+    },
+    {
+     "w": "qué",
+     "start": 57.28,
+     "end": 57.42
+    },
+    {
+     "w": "momentos.",
+     "start": 57.42,
+     "end": 57.82
+    }
+   ]
+  },
+  {
+   "text": "Y poder explicarle a un cliente por qué se tomó una decisión.",
+   "start": 58.4,
+   "end": 61.72,
+   "words": [
+    {
+     "w": "Y",
+     "start": 58.4,
+     "end": 58.52
+    },
+    {
+     "w": "poder",
+     "start": 58.52,
+     "end": 58.8
+    },
+    {
+     "w": "explicarle",
+     "start": 58.8,
+     "end": 59.38
+    },
+    {
+     "w": "a",
+     "start": 59.38,
+     "end": 59.42
+    },
+    {
+     "w": "un",
+     "start": 59.42,
+     "end": 59.56
+    },
+    {
+     "w": "cliente",
+     "start": 59.56,
+     "end": 60.04
+    },
+    {
+     "w": "por",
+     "start": 60.04,
+     "end": 60.23
+    },
+    {
+     "w": "qué",
+     "start": 60.34,
+     "end": 60.5
+    },
+    {
+     "w": "se",
+     "start": 60.5,
+     "end": 60.7
+    },
+    {
+     "w": "tomó",
+     "start": 60.7,
+     "end": 60.98
+    },
+    {
+     "w": "una",
+     "start": 60.98,
+     "end": 61.14
+    },
+    {
+     "w": "decisión.",
+     "start": 61.14,
+     "end": 61.72
+    }
+   ]
+  },
+  {
+   "text": "Lleva dos preguntas a tu próxima reunión:",
+   "start": 62.09,
+   "end": 64.44,
+   "words": [
+    {
+     "w": "Lleva",
+     "start": 62.09,
+     "end": 62.52
+    },
+    {
+     "w": "dos",
+     "start": 62.52,
+     "end": 62.76
+    },
+    {
+     "w": "preguntas",
+     "start": 62.76,
+     "end": 63.3
+    },
+    {
+     "w": "a",
+     "start": 63.3,
+     "end": 63.4
+    },
+    {
+     "w": "tu",
+     "start": 63.4,
+     "end": 63.52
+    },
+    {
+     "w": "próxima",
+     "start": 63.52,
+     "end": 64.06
+    },
+    {
+     "w": "reunión:",
+     "start": 64.06,
+     "end": 64.44
+    }
+   ]
+  },
+  {
+   "text": "¿cada cuánto revisamos nuestros modelos?",
+   "start": 64.8,
+   "end": 66.93,
+   "words": [
+    {
+     "w": "¿cada",
+     "start": 64.8,
+     "end": 65.05
+    },
+    {
+     "w": "cuánto",
+     "start": 65.16,
+     "end": 65.6
+    },
+    {
+     "w": "revisamos",
+     "start": 65.6,
+     "end": 66.14
+    },
+    {
+     "w": "nuestros",
+     "start": 66.14,
+     "end": 66.58
+    },
+    {
+     "w": "modelos?",
+     "start": 66.58,
+     "end": 66.93
+    }
+   ]
+  },
+  {
+   "text": "¿Y podríamos explicar una decisión si nos la piden?",
+   "start": 67.4,
+   "end": 70.49,
+   "words": [
+    {
+     "w": "¿Y",
+     "start": 67.4,
+     "end": 67.68
+    },
+    {
+     "w": "podríamos",
+     "start": 67.82,
+     "end": 68.48
+    },
+    {
+     "w": "explicar",
+     "start": 68.48,
+     "end": 68.98
+    },
+    {
+     "w": "una",
+     "start": 68.98,
+     "end": 69.24
+    },
+    {
+     "w": "decisión",
+     "start": 69.24,
+     "end": 69.72
+    },
+    {
+     "w": "si",
+     "start": 69.72,
+     "end": 69.86
+    },
+    {
+     "w": "nos",
+     "start": 69.86,
+     "end": 70.0
+    },
+    {
+     "w": "la",
+     "start": 70.0,
+     "end": 70.09
+    },
+    {
+     "w": "piden?",
+     "start": 70.18,
+     "end": 70.49
+    }
+   ]
+  },
+  {
+   "text": "Porque un modelo que no se actualiza evalúa el presente con el mapa del pasado.",
+   "start": 70.84,
+   "end": 75.46,
+   "words": [
+    {
+     "w": "Porque",
+     "start": 70.84,
+     "end": 71.24
+    },
+    {
+     "w": "un",
+     "start": 71.24,
+     "end": 71.32
+    },
+    {
+     "w": "modelo",
+     "start": 71.32,
+     "end": 71.8
+    },
+    {
+     "w": "que",
+     "start": 71.8,
+     "end": 72.02
+    },
+    {
+     "w": "no",
+     "start": 72.02,
+     "end": 72.18
+    },
+    {
+     "w": "se",
+     "start": 72.18,
+     "end": 72.24
+    },
+    {
+     "w": "actualiza",
+     "start": 72.24,
+     "end": 72.86
+    },
+    {
+     "w": "evalúa",
+     "start": 72.96,
+     "end": 73.4
+    },
+    {
+     "w": "el",
+     "start": 73.4,
+     "end": 73.52
+    },
+    {
+     "w": "presente",
+     "start": 73.52,
+     "end": 74.17
+    },
+    {
+     "w": "con",
+     "start": 74.17,
+     "end": 74.36
+    },
+    {
+     "w": "el",
+     "start": 74.36,
+     "end": 74.54
+    },
+    {
+     "w": "mapa",
+     "start": 74.54,
+     "end": 74.88
+    },
+    {
+     "w": "del",
+     "start": 74.88,
+     "end": 75.04
+    },
+    {
+     "w": "pasado.",
+     "start": 75.04,
+     "end": 75.46
+    }
+   ]
+  }
+ ]
+}
