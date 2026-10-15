@@ -31,6 +31,10 @@ export function mixHex(a: string, b: string, k: number, alpha = 1) {
   return `rgba(${ch(16)},${ch(8)},${ch(0)},${alpha})`;
 }
 
+// ------------------------------------------------------------------ footer (on every plate)
+/** Identification footer. Change the trend / insight numbers here. */
+export const FOOTER = ['Foresight', 'ACH Q2 2026', 'Tendencia X', 'Insight X'];
+
 // ------------------------------------------------------------------ type: Plus Jakarta Sans
 let fontsReady: Promise<void> | null = null;
 export function loadJakarta() {
@@ -393,9 +397,31 @@ export abstract class Plate extends Scene {
       ov = this.draw(c, f.t, f);
       c.restore();
     } else ov = this.draw(c, f.t, f);
+    drawFooter(c, f.t);
     this.ctx.comp.draw(this.ctx.renderer, this.L.upload(), out, { mode: 'replace' });
     return { bloom: 0, halation: 0, ca: 0, grain: 0, vignette: 0, hud: 0, flat: 1, ...(ov ?? {}) };
   }
+}
+
+/** Small pill bottom-left: Foresight · ACH Q2 2026 · Tendencia X · Insight X. Readable on blue and on white. */
+export function drawFooter(c: CanvasRenderingContext2D, t: number) {
+  const k = clamp((t - 0.4) / 0.5);
+  if (k <= 0) return;
+  const size = 22, padX = 22, h = 44, x = 40, y = 1080 - 40 - h;
+  c.save(); c.globalAlpha = ease.outCubic(k);
+  const parts = FOOTER;
+  const sep = '   ·   ';
+  const wText = parts.reduce((a, s2, i) => a + measureText(c, s2, i === 0 ? 700 : 500, size) + (i ? measureText(c, sep, 500, size) : 0), 0);
+  rrect(c, x, y, wText + padX * 2, h, h / 2);
+  c.fillStyle = hexA(C.azul, 0.92); c.fill();
+  c.strokeStyle = hexA(C.blanco, 0.35); c.lineWidth = 2; c.stroke();
+  let tx = x + padX;
+  parts.forEach((s2, i) => {
+    if (i) { text(c, sep, tx, y + h / 2 + size * 0.36, { w: 500, size, col: hexA(C.blanco, 0.6) }); tx += measureText(c, sep, 500, size); }
+    text(c, s2, tx, y + h / 2 + size * 0.36, { w: i === 0 ? 700 : 500, size, col: C.blanco });
+    tx += measureText(c, s2, i === 0 ? 700 : 500, size);
+  });
+  c.restore();
 }
 
 // ------------------------------------------------------------------ effects
