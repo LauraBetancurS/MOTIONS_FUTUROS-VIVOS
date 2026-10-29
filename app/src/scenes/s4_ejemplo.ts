@@ -6,7 +6,7 @@
 // stamp drops on the client card (2–3 frames of shake). A green stroke underlines the inflation arrow,
 // then strikes the stamp: the delay came from the context, not the person.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, Plate, at, person, type Mood, decor, glow, burst, ripple, float, clamp, ease, icon, inn, labelPill, lerp, pop, pt, quadPts, rrect, stampShake, strokeTrim, text, polyAt, hexA } from './_icesi';
+import { C, Plate, at, Cutout, type CutKey, decor, glow, burst, ripple, float, clamp, ease, icon, inn, labelPill, lerp, pop, pt, quadPts, rrect, stampShake, strokeTrim, text, polyAt, hexA } from './_icesi';
 
 const CAL = { x: 1150, y: 220, w: 620, h: 470, cols: 7, rows: 4 };
 const CARD = { x: 1060, y: 560, w: 380, h: 200 };
@@ -15,6 +15,10 @@ const UNDER = quadPts(pt(120, 980), pt(640, 940), pt(1010, 330), 60);
 
 export default class S4 extends Plate {
   tLate = 0; tPago = 0; tSube = 0; tInfl = 0; tStamp = 0; tCtx = 0; tPer = 0;
+
+  char = new Cutout();
+  keys: CutKey[] = [];
+  override async load() { await this.char.load(); }
 
   override setup() {
     const S = this.S, L1 = 'se atrasa en un pago', L2 = 'lo marca como riesgoso';
@@ -25,6 +29,14 @@ export default class S4 extends Plate {
     this.tStamp = S.word(L2, 'riesgoso,').start;
     this.tCtx = S.word(L2, 'contexto,').start;
     this.tPer = S.word(L2, 'persona.').start;
+    this.keys = [
+      { at: -1, pose: 'neutral', head: 'sonrisa' },
+      { at: this.tLate - 0.05, pose: 'neutral', head: 'sorpresa' },
+      { at: this.tLate + 0.9, pose: 'idea', head: 'duda' },
+      { at: this.tStamp + 0.15, pose: 'neutral', head: 'preocupada' },
+      { at: this.tCtx + 0.2, pose: 'idea', head: 'habla' },
+      { at: this.tPer + 0.15, pose: 'mano-pecho', head: 'feliz' },
+    ];
   }
 
   draw(c: CanvasRenderingContext2D, t: number, _f: Frame): PostOverrides {
@@ -84,17 +96,9 @@ export default class S4 extends Plate {
     // the person
     const ai = pop(t, t0 + 0.1, 0.5);
     // the person reacts: calm → surprised (late payment) → thinking → worried (stamp, with a flinch) → happy
-    const mood: Mood = t > this.tPer + 0.15 ? 'happy' : t > this.tStamp + 0.15 ? 'worry' : t > this.tLate + 0.9 ? 'think' : t > this.tLate - 0.05 ? 'surprised' : 'neutral';
     const flinch = t > this.tStamp + 0.2 ? 22 * Math.exp(-(t - this.tStamp - 0.2) * 9) * Math.abs(Math.sin((t - this.tStamp - 0.2) * 22)) : 0;
-    const shrug = t > this.tStamp + 0.25 && t < this.tPer + 0.15 ? ease.outBack(clamp((t - this.tStamp - 0.25) / 0.45)) : 0;
-    const think = mood === 'think' ? ease.outCubic(clamp((t - this.tLate - 0.9) / 0.4)) : 0;
-    const cheer = mood === 'happy' ? ease.outBack(clamp((t - this.tPer - 0.15) / 0.5)) : 0;
-    const wave = Math.sin(t * 10) * 0.25;
-    at(c, 560, 880, { s: ai }, () => person(c, 0, 0, 400, t, {
-      shirt: C.morado, look: mood === 'worry' ? -0.4 : 0.8, mood, seed: 2, hop: flinch + cheer * Math.max(0, Math.sin((t - this.tPer) * 8)) * 10 * (1 - clamp((t - this.tPer - 1.2) / 0.5)),
-      armL: lerp(lerp(0.1 + Math.sin(t * 1.6) * 0.05, 0.55, shrug), 0.25, cheer), elbowL: lerp(0.1, 1.5, shrug),
-      armR: mood === 'happy' ? lerp(0.1, 2.6, cheer) : lerp(lerp(0.1 + Math.sin(t * 1.6 + 1.3) * 0.05, 0.55, shrug), 1.1, think), elbowR: mood === 'happy' ? 0.3 + wave : lerp(lerp(0.1, 1.5, shrug), 2.2, think),
-    }));
+    // the illustrated client: calm → surprised (late payment) → doubtful, finger up → worried (stamp, flinch) → relieved and happy
+    at(c, 560, 880, { s: ai }, () => this.char.draw(c, 0, 0, 470, t, this.keys, { hop: flinch, seed: 2 }));
 
     // calendar (blue lines)
     const ci = inn(t, t0 + 0.2, 0.5);
@@ -157,7 +161,7 @@ export default class S4 extends Plate {
 
     // on the band
     const bk = inn(t, this.tCtx + 0.1, 0.45);
-    text(c, 'El problema fue el contexto, no la persona.', 960, 1008 + (1 - bk) * 30, { w: 700, size: 52, col: C.blanco, align: 'center', alpha: bk });
+    text(c, 'El problema fue el contexto, no la persona.', 960, 962 + (1 - bk) * 30, { w: 700, size: 52, col: C.blanco, align: 'center', alpha: bk });
     return {};
   }
 }

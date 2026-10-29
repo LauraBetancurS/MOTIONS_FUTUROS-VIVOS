@@ -1,0 +1,101 @@
+{
+ "scale": 0.6,
+ "poses": {
+  "saluda": {
+   "file": "pose-saluda.png",
+   "w": 242,
+   "h": 750,
+   "head": [
+    57.0,
+    0.0
+   ]
+  },
+  "paz": {
+   "file": "pose-paz.png",
+   "w": 313,
+   "h": 750,
+   "head": [
+    150.6,
+    0.0
+   ]
+  },
+  "idea": {
+   "file": "pose-idea.png",
+   "w": 277,
+   "h": 750,
+   "head": [
+    53.4,
+    0.0
+   ]
+  },
+  "neutral": {
+   "file": "pose-neutral.png",
+   "w": 292,
+   "h": 748,
+   "head": [
+    86.4,
+    0.0
+   ]
+  },
+  "mano-pecho": {
+   "file": "pose-mano-pecho.png",
+   "w": 275,
+   "h": 751,
+   "head": [
+    57.0,
+    0.0
+   ]
+  },
+  "senala": {
+   "file": "pose-senala.png",
+   "w": 353,
+   "h": 751,
+   "head": [
+    57.0,
+    0.0
+   ]
+  }
+ },
+ "heads": {
+  "feliz": {
+   "file": "cabeza-feliz.png",
+   "w": 98,
+   "h": 113
+  },
+  "mascarilla": {
+   "file": "cabeza-mascarilla.png",
+   "w": 98,
+   "h": 113
+  },
+  "preocupada": {
+   "file": "cabeza-preocupada.png",
+   "w": 98,
+   "h": 113
+  },
+  "duda": {
+   "file": "cabeza-duda.png",
+   "w": 98,
+   "h": 113
+  },
+  "enojada": {
+   "file": "cabeza-enojada.png",
+   "w": 98,
+   "h": 113
+  },
+  "sonrisa": {
+   "file": "cabeza-sonrisa.png",
+   "w": 98,
+   "h": 113
+  },
+  "sorpresa": {
+   "file": "cabeza-sorpresa.png",
+   "w": 98,
+   "h": 113
+  },
+  "habla": {
+   "file": "cabeza-habla.png",
+   "w": 98,
+   "h": 113
+  }
+ }
+}

@@ -640,6 +640,72 @@ export function person(c: CanvasRenderingContext2D, x: number, feetY: number, h:
   c.restore();
 }
 
+// ------------------------------------------------------------------ illustrated character (cut-out kit)
+/** One key of a character's timeline: from time `at` it holds `pose` with `head`. */
+export interface CutKey { at: number; pose: string; head: string; flip?: boolean }
+interface CutManifest { scale: number; poses: Record<string, { file: string; w: number; h: number; head: [number, number] }>; heads: Record<string, { file: string; w: number; h: number }> }
+
+/**
+ * An illustrated character from a cut-out kit (app/public/personaje/): full-body poses plus swappable
+ * heads (expressions). It is never still: it breathes, sways from the feet, bounces into each new pose
+ * and its expression changes on the keys the scene gives it (with quick "talk" flicks in between).
+ */
+export class Cutout {
+  m!: CutManifest;
+  img = new Map<string, HTMLImageElement>();
+  constructor(public dir = 'personaje') {}
+  async load() {
+    this.m = await (await fetch(`${this.dir}/personaje.json`)).json();
+    const files = [...Object.values(this.m.poses), ...Object.values(this.m.heads)].map((x) => x.file);
+    await Promise.all(files.map(async (f) => { const im = await loadImage(`${this.dir}/${f}`); if (im) this.img.set(f, im); }));
+  }
+  /** Draw at (x, feetY), `h` px tall, following `keys` (sorted by time). `talk`: alternate the head with `talkHead` while speaking. */
+  draw(c: CanvasRenderingContext2D, x: number, feetY: number, h: number, t: number, keys: CutKey[], o: { hop?: number; seed?: number; talk?: [number, number][]; talkHead?: string } = {}) {
+    if (!this.m) return;
+    let i = 0;
+    for (let k = 0; k < keys.length; k++) if (t >= keys[k]!.at) i = k;
+    const key = keys[i]!, prev = keys[i - 1];
+    const P = this.m.poses[key.pose]!, sc = h / P.h, seed = o.seed ?? 1;
+    // bounce into a new pose (squash and stretch) when the pose itself changes
+    const poseChanged = prev && prev.pose !== key.pose;
+    const dt = t - key.at;
+    const bounce = poseChanged && dt < 0.35 ? Math.sin(clamp(dt / 0.35) * Math.PI) * (1 - dt / 0.35) : 0;
+    const breath = Math.sin(t * 2.2 + seed) * 0.008;
+    const sway = Math.sin(t * 0.9 + seed * 2) * 0.012;
+    c.save();
+    c.translate(x, feetY - (o.hop ?? 0));
+    // soft floor shadow
+    c.fillStyle = 'rgba(0,0,0,0.10)'; c.beginPath(); c.ellipse(0, 4 + (o.hop ?? 0), P.w * sc * 0.42, h * 0.022, 0, 0, Math.PI * 2); c.fill();
+    c.rotate(sway);
+    c.scale((key.flip ? -1 : 1) * (1 + bounce * 0.05), 1 + breath - bounce * 0.05);
+    // a short crossfade from the previous pose hides the swap
+    const fade = poseChanged ? clamp(dt / 0.1) : 1;
+    const drawPose = (k: CutKey, a: number) => {
+      const pp = this.m.poses[k.pose]!, s2 = h / pp.h;
+      const im = this.img.get(pp.file);
+      if (!im || a <= 0) return;
+      c.save(); c.globalAlpha *= a;
+      c.translate(-pp.w * s2 / 2, -h);
+      c.drawImage(im, 0, 0, pp.w * s2, pp.h * s2);
+      // expression: the head is swapped on top (same size and place in every pose)
+      let head = k.head;
+      if (o.talk && o.talkHead) for (const [a0, a1] of o.talk) if (t >= a0 && t < a1 && Math.floor((t - a0) * 7) % 2 === 1) head = o.talkHead;
+      const hd = this.m.heads[head], him = hd && this.img.get(hd.file);
+      if (hd && him) {
+        // the head nods a little on its own
+        const nod = Math.sin(t * 1.7 + seed) * 0.02;
+        c.translate(pp.head[0] * s2 + hd.w * s2 / 2, pp.head[1] * s2 + hd.h * s2);
+        c.rotate(nod);
+        c.drawImage(him, -hd.w * s2 / 2, -hd.h * s2, hd.w * s2, hd.h * s2);
+      }
+      c.restore();
+    };
+    if (prev && fade < 1) drawPose(prev, 1 - fade);
+    drawPose(key, fade);
+    c.restore();
+  }
+}
+
 // ------------------------------------------------------------------ images (logos)
 export function loadImage(src: string): Promise<HTMLImageElement | null> {
   return new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
