@@ -140,7 +140,7 @@ export function vnoise(x: number, seed = 0) {
   const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f);
   return h(i) * (1 - u) + h(i + 1) * u;
 }
-/** Stroke the first fraction k of a polyline (trim path). In scrapbook mode the line wobbles like a marker and boils on every stop-motion step. */
+/** Stroke the first fraction k of a polyline (trim path). In scrapbook mode the line wobbles like a marker (steady, it does not shake). */
 export function strokeTrim(c: CanvasRenderingContext2D, ps: P[], k: number, from = 0) {
   if (k <= from) return;
   const L = polyLen(ps), a = L * clamp(from), b = L * clamp(k);
@@ -148,7 +148,7 @@ export function strokeTrim(c: CanvasRenderingContext2D, ps: P[], k: number, from
   c.beginPath();
   let s = 0, started = false;
   const put = (x: number, y: number, nx: number, ny: number, sl: number) => {
-    const w = amp ? amp * vnoise(sl * 0.018, SCRAP.step % 3 + 1) : 0;
+    const w = amp ? amp * vnoise(sl * 0.018, 1) : 0;
     const X = x + nx * w, Y = y + ny * w;
     if (!started) { c.moveTo(X, Y); started = true; } else c.lineTo(X, Y);
   };
@@ -405,7 +405,7 @@ export abstract class Plate extends Scene {
   abstract draw(c: CanvasRenderingContext2D, t: number, f: Frame): PostOverrides | void;
   override render(f: Frame, out: THREE.WebGLRenderTarget): PostOverrides {
     const c = this.L.ctx;
-    // stop-motion: the picture advances in steps (12 per second) and boils a little on each step
+    // stop-motion: the picture advances in steps (12 per second); no frame shake
     const step = SCRAP.on ? Math.floor(f.t * SCRAP.fps) : 0;
     const t = SCRAP.on ? Math.max(this.ctx.start, step / SCRAP.fps) : f.t;
     SCRAP.step = step;
@@ -413,7 +413,6 @@ export abstract class Plate extends Scene {
     this.L.clear(r < 1 ? this.prevBg : C.blanco);
     c.lineCap = 'round'; c.lineJoin = 'round';
     c.save();
-    if (SCRAP.on) { c.translate(960, 540); c.scale(1.006, 1.006); c.rotate(vnoise(step * 0.9, 5) * 0.0016); c.translate(-960 + vnoise(step * 1.3, 6) * 1.6, -540 + vnoise(step * 1.1, 7) * 1.6); }
     let ov: PostOverrides | void;
     if (r < 1) {
       c.save();
