@@ -7,7 +7,7 @@
 // different lengths, green and orange. Three questions come in from the right, each with a yellow icon.
 // Then the manager turns to a client and a white speech bubble appears.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, Plate, at, person, type Mood, decor, glow, burst, float, hexA, pt, clamp, ease, icon, inn, lerp, pop, rrect, text, vis } from './_icesi';
+import { C, Plate, at, person, type Mood, decor, glow, burst, float, hexA, pt, clamp, ease, icon, inn, lerp, pop, rrect, text, vis , tape, strokeTrim, measureText } from './_icesi';
 
 const SCR = { x: 640, y: 250, w: 620, h: 470 };
 const SEG = [
@@ -67,7 +67,8 @@ export default class S5 extends Plate {
     const si = pop(t, t1 + 0.1, 0.5);
     at(c, SCR.x + SCR.w / 2, SCR.y + SCR.h / 2, { s: si }, () => {
       const L = -SCR.w / 2, T = -SCR.h / 2;
-      c.fillStyle = C.blanco; rrect(c, L, T, SCR.w, SCR.h, 26); c.fill();
+      c.fillStyle = C.blanco; rrect(c, L, T, SCR.w, SCR.h, 10); c.fill();
+      tape(c, L + 30, T + 4, 120, -0.6, undefined, 31); tape(c, -L - 30, T + 4, 120, 0.6, undefined, 32);
       c.fillRect(-14, SCR.h / 2, 28, 80); rrect(c, -110, SCR.h / 2 + 70, 220, 22, 11); c.fill();
 
       const split = ease.inOutCubic(clamp((t - this.tLupa - 0.75) / 0.6));
@@ -115,6 +116,8 @@ export default class S5 extends Plate {
       at(c, 1285 + (1 - k) * 160, y, { a: k }, () => {
         at(c, 40, -18 + float(t, i, 4, 2), {}, () => glow(c, hexA(C.amarillo, 0.7), 18, () => q.ic(c, 76, C.amarillo)));
         text(c, q.s, 104, 0, { w: 700, size: 50, col: C.blanco });
+        const uw = measureText(c, q.s, 700, 50);
+        c.save(); c.strokeStyle = C.amarillo; c.lineWidth = 6; strokeTrim(c, [pt(100, 16), pt(104 + uw, 12)], ease.inOutCubic(clamp((t - this.tQ[i]! - 0.3) / 0.4))); c.restore();
       });
     });
 

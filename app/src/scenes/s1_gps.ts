@@ -4,7 +4,7 @@
 // "existen" a street fades out and an orange "road closed" sign bounces in; the car stops with a small
 // rebound and a blue question mark appears. Out: fast zoom into the GPS screen, which fills the frame in blue.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, MAP, Plate, at, glow, burst, ripple, float, drawStreets, ease, hexA, icon, inn, polyAt, pop, strokeTrim, text, clamp, vis, measureText, rrect } from './_icesi';
+import { C, MAP, Plate, at, glow, burst, ripple, float, drawStreets, ease, hexA, icon, inn, polyAt, pop, strokeTrim, text, clamp, vis, measureText, rrect , tornPaper, tape, scribbleCircle, doodleArrow, pt } from './_icesi';
 
 export default class S1 extends Plate {
   tTitle = 0.3; tNote = 0; tGone = 0; tStop = 0; tZoom = 0;
@@ -62,6 +62,9 @@ export default class S1 extends Plate {
       glow(c, hexA(C.azul, 0.5), 18, () => icon.car(c, 74, C.azul));
     });
     // "?" above the car once it stops
+    // marker notes: circle the closed road, arrow from the car
+    scribbleCircle(c, gx, g.y, 95, 80, ease.inOutCubic(clamp((t - this.tGone - 0.55) / 0.5)), C.naranja, 7, 2);
+    doodleArrow(c, pt(car.x + 70, car.y - 70), pt(car.x + 180, car.y - 160), pt(gx - 110, g.y - 60), ease.inOutCubic(clamp((t - this.tGone - 0.8) / 0.45)), C.naranja, 6);
     const q = pop(t, this.tStop + 0.2, 0.4);
     burst(c, car.x, car.y - 92, t, this.tStop + 0.25, C.amarillo, 64, 10);
     at(c, car.x, car.y - 92 + (q >= 1 ? float(t, 1, 4, 3) : 0), { s: q }, () => text(c, '?', 0, 26, { w: 800, size: 84, col: C.azul, align: 'center' }));
@@ -71,7 +74,8 @@ export default class S1 extends Plate {
     const out = 1 - ease.inCubic(clamp((t - this.tZoom) / 0.2));
     const ti = inn(t, this.tTitle, 0.5);
     c.save(); c.globalAlpha = out;
-    c.fillStyle = C.blanco; c.fillRect(0, 0, 1920, 210);
+    at(c, 960, 112, { r: -0.006 }, () => tornPaper(c, 1520, 150, '#FFFFFF', 3));
+    tape(c, 240, 52, 150, -0.2, undefined, 2); tape(c, 1680, 60, 150, 0.18, undefined, 4);
     void ti;
     {
       // the title is the spoken phrase, each word on its spoken word
@@ -92,10 +96,8 @@ export default class S1 extends Plate {
       const s = 'Última actualización: hace 2 años', size = 30;
       const w = measureText(c, s, 600, size) + 120, h = 78, x = 1880 - w, y = 236 - (1 - n) * 40;
       c.save(); c.globalAlpha *= n;
-      c.shadowColor = hexA(C.gris1, 0.25); c.shadowBlur = 24; c.shadowOffsetY = 8;
-      rrect(c, x, y, w, h, 18); c.fillStyle = C.blanco; c.fill();
-      c.shadowColor = 'transparent';
-      c.strokeStyle = C.gris2; c.lineWidth = 3; c.stroke();
+      at(c, x + w / 2, y + h / 2, { r: 0.015 }, () => tornPaper(c, w, h, '#FFFDF4', 9));
+      tape(c, x + w - 20, y + 4, 90, 0.5, undefined, 6);
       at(c, x + 46, y + h / 2, {}, () => icon.refresh(c, 40, C.gris1));
       text(c, s, x + 84, y + h / 2 + 11, { w: 600, size, col: C.gris1 });
       c.restore();

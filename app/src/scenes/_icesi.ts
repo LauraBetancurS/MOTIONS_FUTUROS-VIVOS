@@ -132,18 +132,37 @@ export function polyAt(ps: P[], k: number): { x: number; y: number; a: number } 
   return { x: ps[0]!.x, y: ps[0]!.y, a: 0 };
 }
 /** Stroke the first fraction k of a polyline (trim path). */
+/** Scrapbook state: the current stop-motion step (lines "boil" from one step to the next) and the hand-drawn wobble. */
+export const SCRAP = { on: true, fps: 12, step: 0, wobble: 2.6 };
+/** Smooth 1D value noise in -1..1. */
+export function vnoise(x: number, seed = 0) {
+  const h = (n: number) => { const v = Math.sin(n * 127.1 + seed * 311.7) * 43758.5453; return (v - Math.floor(v)) * 2 - 1; };
+  const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f);
+  return h(i) * (1 - u) + h(i + 1) * u;
+}
+/** Stroke the first fraction k of a polyline (trim path). In scrapbook mode the line wobbles like a marker and boils on every stop-motion step. */
 export function strokeTrim(c: CanvasRenderingContext2D, ps: P[], k: number, from = 0) {
   if (k <= from) return;
   const L = polyLen(ps), a = L * clamp(from), b = L * clamp(k);
+  const amp = SCRAP.on ? Math.min(SCRAP.wobble * (c.lineWidth > 30 ? 1.8 : 1), c.lineWidth * 0.6 + 1) : 0;
   c.beginPath();
   let s = 0, started = false;
+  const put = (x: number, y: number, nx: number, ny: number, sl: number) => {
+    const w = amp ? amp * vnoise(sl * 0.018, SCRAP.step % 3 + 1) : 0;
+    const X = x + nx * w, Y = y + ny * w;
+    if (!started) { c.moveTo(X, Y); started = true; } else c.lineTo(X, Y);
+  };
   for (let i = 1; i < ps.length; i++) {
     const p = ps[i - 1]!, q = ps[i]!, d = Math.hypot(q.x - p.x, q.y - p.y);
     const s0 = s, s1 = s + d; s = s1;
     if (s1 < a || s0 > b || d === 0) continue;
     const u0 = clamp((a - s0) / d), u1 = clamp((b - s0) / d);
-    if (!started) { c.moveTo(lerp(p.x, q.x, u0), lerp(p.y, q.y, u0)); started = true; }
-    c.lineTo(lerp(p.x, q.x, u1), lerp(p.y, q.y, u1));
+    const nx = -(q.y - p.y) / d, ny = (q.x - p.x) / d;
+    const n = amp ? Math.max(1, Math.ceil(((u1 - u0) * d) / 14)) : 1;
+    for (let j = started ? 1 : 0; j <= n; j++) {
+      const u = lerp(u0, u1, j / n);
+      put(lerp(p.x, q.x, u), lerp(p.y, q.y, u), nx, ny, s0 + u * d);
+    }
   }
   c.stroke();
 }
@@ -386,17 +405,25 @@ export abstract class Plate extends Scene {
   abstract draw(c: CanvasRenderingContext2D, t: number, f: Frame): PostOverrides | void;
   override render(f: Frame, out: THREE.WebGLRenderTarget): PostOverrides {
     const c = this.L.ctx;
-    const r = this.prevBg ? ease.inOutCubic(clamp((f.t - this.ctx.start) / this.revealDur)) : 1;
+    // stop-motion: the picture advances in steps (12 per second) and boils a little on each step
+    const step = SCRAP.on ? Math.floor(f.t * SCRAP.fps) : 0;
+    const t = SCRAP.on ? Math.max(this.ctx.start, step / SCRAP.fps) : f.t;
+    SCRAP.step = step;
+    const r = this.prevBg ? ease.inOutCubic(clamp((t - this.ctx.start) / this.revealDur)) : 1;
     this.L.clear(r < 1 ? this.prevBg : C.blanco);
     c.lineCap = 'round'; c.lineJoin = 'round';
+    c.save();
+    if (SCRAP.on) { c.translate(960, 540); c.scale(1.006, 1.006); c.rotate(vnoise(step * 0.9, 5) * 0.0016); c.translate(-960 + vnoise(step * 1.3, 6) * 1.6, -540 + vnoise(step * 1.1, 7) * 1.6); }
     let ov: PostOverrides | void;
     if (r < 1) {
       c.save();
       c.beginPath(); c.arc(this.revealFrom.x, this.revealFrom.y, 2300 * r, 0, Math.PI * 2); c.clip();
       c.fillStyle = C.blanco; c.fillRect(0, 0, 1920, 1080);
-      ov = this.draw(c, f.t, f);
+      ov = this.draw(c, t, f);
       c.restore();
-    } else ov = this.draw(c, f.t, f);
+    } else ov = this.draw(c, t, f);
+    c.restore();
+    if (SCRAP.on) paperOverlay(c);
     drawFooter(c, f.t);
     this.ctx.comp.draw(this.ctx.renderer, this.L.upload(), out, { mode: 'replace' });
     return { bloom: 0, halation: 0, ca: 0, grain: 0, vignette: 0, hud: 0, flat: 1, ...(ov ?? {}) };
@@ -422,6 +449,127 @@ export function drawFooter(c: CanvasRenderingContext2D, t: number) {
     tx += measureText(c, s2, i === 0 ? 700 : 500, size);
   });
   c.restore();
+}
+
+// ------------------------------------------------------------------ scrapbook: paper, tape, staples, clips, doodles
+let PAPER: HTMLCanvasElement | null = null;
+/** A sheet of paper (grain, fibres, soft blotches), made once and multiplied over every frame. */
+function paperTexture() {
+  if (PAPER) return PAPER;
+  const W = 1280, H = 720, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const x = cv.getContext('2d')!;
+  x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, W, H);
+  let sd = 7; const rnd = () => ((sd = (sd * 16807) % 2147483647) / 2147483647);
+  // soft blotches
+  for (let i = 0; i < 60; i++) {
+    const gx = rnd() * W, gy = rnd() * H, r = 60 + rnd() * 220;
+    const g = x.createRadialGradient(gx, gy, 0, gx, gy, r);
+    g.addColorStop(0, `rgba(214,200,172,${0.05 + rnd() * 0.06})`); g.addColorStop(1, 'rgba(214,200,172,0)');
+    x.fillStyle = g; x.fillRect(gx - r, gy - r, r * 2, r * 2);
+  }
+  // fibres
+  for (let i = 0; i < 1400; i++) {
+    const fx = rnd() * W, fy = rnd() * H, len = 4 + rnd() * 16, an = rnd() * Math.PI;
+    x.strokeStyle = `rgba(150,135,110,${0.05 + rnd() * 0.12})`; x.lineWidth = 0.6 + rnd() * 0.6;
+    x.beginPath(); x.moveTo(fx, fy); x.quadraticCurveTo(fx + Math.cos(an) * len * 0.5 + (rnd() - 0.5) * 4, fy + Math.sin(an) * len * 0.5 + (rnd() - 0.5) * 4, fx + Math.cos(an) * len, fy + Math.sin(an) * len); x.stroke();
+  }
+  // grain
+  const img = x.getImageData(0, 0, W, H), d = img.data;
+  for (let i = 0; i < d.length; i += 4) { const n = (rnd() - 0.5) * 26; d[i] = Math.min(255, d[i]! + n); d[i + 1] = Math.min(255, d[i + 1]! + n); d[i + 2] = Math.min(255, d[i + 2]! + n * 0.9); }
+  x.putImageData(img, 0, 0);
+  PAPER = cv; return cv;
+}
+export function paperOverlay(c: CanvasRenderingContext2D, strength = 0.75) {
+  c.save(); c.globalCompositeOperation = 'multiply'; c.globalAlpha = strength;
+  c.drawImage(paperTexture(), 0, 0, 1920, 1080);
+  // darker, slightly burnt edges like an old page
+  const g = c.createRadialGradient(960, 540, 520, 960, 540, 1150);
+  g.addColorStop(0, 'rgba(120,100,70,0)'); g.addColorStop(1, 'rgba(120,100,70,0.22)');
+  c.fillStyle = g; c.fillRect(0, 0, 1920, 1080);
+  c.restore();
+}
+const sr = (i: number, seed = 1) => { const v = Math.sin(i * 91.7 + seed * 47.3) * 43758.5453; return v - Math.floor(v); };
+/** A rectangle of paper with torn, uneven edges (centered at 0,0), lifted with a soft shadow. */
+export function tornPaper(c: CanvasRenderingContext2D, w: number, h: number, fill: string, seed = 1, o: { shadow?: boolean; tear?: number } = {}) {
+  const tr = o.tear ?? 7, pts: P[] = [];
+  const edge = (x0: number, y0: number, x1: number, y1: number, n: number, k: number) => {
+    for (let i = 0; i < n; i++) { const u = i / n; const j = (sr(i + k * 100, seed) - 0.5) * tr; pts.push(pt(lerp(x0, x1, u) + (y0 === y1 ? 0 : j), lerp(y0, y1, u) + (y0 === y1 ? j : 0))); }
+  };
+  edge(-w / 2, -h / 2, w / 2, -h / 2, Math.ceil(w / 9), 1); edge(w / 2, -h / 2, w / 2, h / 2, Math.ceil(h / 9), 2);
+  edge(w / 2, h / 2, -w / 2, h / 2, Math.ceil(w / 9), 3); edge(-w / 2, h / 2, -w / 2, -h / 2, Math.ceil(h / 9), 4);
+  c.save();
+  if (o.shadow ?? true) { c.shadowColor = 'rgba(40,30,20,0.28)'; c.shadowBlur = 18; c.shadowOffsetX = 5; c.shadowOffsetY = 9; }
+  c.beginPath(); pts.forEach((p, i) => (i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y))); c.closePath();
+  c.fillStyle = fill; c.fill();
+  c.restore();
+}
+/** A piece of masking tape (semi-transparent, zig-zag ends) centered at (x, y). */
+export function tape(c: CanvasRenderingContext2D, x: number, y: number, w = 130, rot = -0.08, col = 'rgba(244,236,196,0.82)', seed = 1) {
+  const h = w * 0.3;
+  c.save(); c.translate(x, y); c.rotate(rot);
+  c.shadowColor = 'rgba(0,0,0,0.12)'; c.shadowBlur = 4; c.shadowOffsetY = 2;
+  c.beginPath(); c.moveTo(-w / 2, -h / 2);
+  for (let i = 0; i <= 6; i++) c.lineTo(-w / 2 + w * (i / 6), -h / 2 + (sr(i, seed) - 0.5) * 3);
+  for (let i = 0; i <= 5; i++) c.lineTo(w / 2 + (i % 2 ? 4 : -2), -h / 2 + h * (i / 5));
+  for (let i = 6; i >= 0; i--) c.lineTo(-w / 2 + w * (i / 6), h / 2 + (sr(i + 9, seed) - 0.5) * 3);
+  for (let i = 5; i >= 0; i--) c.lineTo(-w / 2 + (i % 2 ? -4 : 2), -h / 2 + h * (i / 5));
+  c.closePath(); c.fillStyle = col; c.fill();
+  c.shadowColor = 'transparent';
+  c.strokeStyle = 'rgba(255,255,255,0.35)'; c.lineWidth = 1;
+  for (let i = 1; i < 4; i++) { c.beginPath(); c.moveTo(-w / 2 + 6, -h / 2 + (h * i) / 4); c.lineTo(w / 2 - 6, -h / 2 + (h * i) / 4); c.stroke(); }
+  c.restore();
+}
+/** A metal staple. */
+export function staple(c: CanvasRenderingContext2D, x: number, y: number, rot = 0.1, len = 46) {
+  c.save(); c.translate(x, y); c.rotate(rot);
+  c.strokeStyle = '#8D8F96'; c.lineWidth = 5; c.lineCap = 'round';
+  c.beginPath(); c.moveTo(-len / 2, 4); c.lineTo(-len / 2, 0); c.lineTo(len / 2, 0); c.lineTo(len / 2, 4); c.stroke();
+  c.strokeStyle = 'rgba(255,255,255,0.7)'; c.lineWidth = 1.5; c.beginPath(); c.moveTo(-len / 2 + 3, -1); c.lineTo(len / 2 - 3, -1); c.stroke();
+  c.restore();
+}
+/** A paper clip, its top sticking out above (x, y). */
+export function clip(c: CanvasRenderingContext2D, x: number, y: number, rot = 0.15, s = 1, col = '#9EA1A9') {
+  c.save(); c.translate(x, y); c.rotate(rot); c.scale(s, s);
+  c.strokeStyle = col; c.lineWidth = 6; c.lineCap = 'round';
+  c.beginPath();
+  c.moveTo(-8, 40); c.lineTo(-8, -30); c.arc(4, -30, 12, Math.PI, 0); c.lineTo(16, 50); c.arc(0, 50, 16, 0, Math.PI); c.lineTo(-16, -20);
+  c.stroke(); c.restore();
+}
+/** Hand-drawn arrow along a quadratic curve (wobbly, boiling), drawn in to fraction k. */
+export function doodleArrow(c: CanvasRenderingContext2D, a: P, ctrl: P, b: P, k: number, col: string, lw = 7) {
+  if (k <= 0) return;
+  const ps = quadPts(a, ctrl, b, 40);
+  c.save(); c.strokeStyle = col; c.lineWidth = lw; c.lineCap = 'round'; c.lineJoin = 'round';
+  strokeTrim(c, ps, k);
+  if (k > 0.85) {
+    const e = polyAt(ps, k), hl = 26 * clamp((k - 0.85) / 0.15);
+    strokeTrim(c, [pt(e.x - Math.cos(e.a - 0.5) * hl, e.y - Math.sin(e.a - 0.5) * hl), pt(e.x, e.y), pt(e.x - Math.cos(e.a + 0.5) * hl, e.y - Math.sin(e.a + 0.5) * hl)], 1);
+  }
+  c.restore();
+}
+/** A loose scribbled loop around (cx, cy), like circling something with a marker. */
+export function scribbleCircle(c: CanvasRenderingContext2D, cx: number, cy: number, rx: number, ry: number, k: number, col: string, lw = 7, seed = 1) {
+  if (k <= 0) return;
+  const ps: P[] = [];
+  for (let i = 0; i <= 80; i++) { const u = i / 80, an = -2.3 + u * Math.PI * 2 * 1.15; const r = 1 + 0.06 * Math.sin(u * 9 + seed) + u * 0.05; ps.push(pt(cx + Math.cos(an) * rx * r, cy + Math.sin(an) * ry * r)); }
+  c.save(); c.strokeStyle = col; c.lineWidth = lw; strokeTrim(c, ps, k); c.restore();
+}
+/** Zig-zag scratch-out over a box. */
+export function scratchOut(c: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, k: number, col: string, lw = 9) {
+  if (k <= 0) return;
+  const ps: P[] = []; const n = 7;
+  for (let i = 0; i <= n; i++) ps.push(pt(x + (w * i) / n, i % 2 ? y + h : y));
+  c.save(); c.strokeStyle = col; c.lineWidth = lw; strokeTrim(c, ps, k); c.restore();
+}
+/** Little doodles: a star, a spiral and a sparkle. */
+export function doodle(c: CanvasRenderingContext2D, kind: 'star' | 'spiral' | 'spark' | 'heart', x: number, y: number, s: number, col: string, k = 1) {
+  if (k <= 0) return;
+  const ps: P[] = [];
+  if (kind === 'star') for (let i = 0; i <= 10; i++) { const an = -Math.PI / 2 + (i * Math.PI) / 5, r = i % 2 ? s * 0.42 : s; ps.push(pt(x + Math.cos(an) * r, y + Math.sin(an) * r)); }
+  else if (kind === 'spiral') for (let i = 0; i <= 50; i++) { const an = i * 0.38, r = (i / 50) * s; ps.push(pt(x + Math.cos(an) * r, y + Math.sin(an) * r)); }
+  else if (kind === 'heart') for (let i = 0; i <= 40; i++) { const u = (i / 40) * Math.PI * 2; ps.push(pt(x + (s / 17) * 16 * Math.sin(u) ** 3, y - (s / 17) * (13 * Math.cos(u) - 5 * Math.cos(2 * u) - 2 * Math.cos(3 * u) - Math.cos(4 * u)))); }
+  else { for (const an of [0, Math.PI / 2, Math.PI / 4, -Math.PI / 4]) { ps.length = 0; ps.push(pt(x - Math.cos(an) * s, y - Math.sin(an) * s), pt(x + Math.cos(an) * s, y + Math.sin(an) * s)); c.save(); c.strokeStyle = col; c.lineWidth = Math.max(3, s * 0.18); strokeTrim(c, ps, k); c.restore(); } return; }
+  c.save(); c.strokeStyle = col; c.lineWidth = Math.max(3, s * 0.12); c.lineJoin = 'round'; strokeTrim(c, ps, k); c.restore();
 }
 
 // ------------------------------------------------------------------ effects
@@ -455,6 +603,24 @@ export const float = (t: number, i = 0, amp = 6, sp = 1.3) => amp * Math.sin(t *
 export function decor(c: CanvasRenderingContext2D, t: number, onBlue: boolean, seed = 1, alpha = 1) {
   let s = seed * 9301 + 49297;
   const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+  if (SCRAP.on) {
+    // scrapbook margins: little marker doodles that boil in place
+    const col2 = onBlue ? hexA(C.blanco, 0.22 * alpha) : hexA(C.azul, 0.16 * alpha);
+    const kinds = ['star', 'spiral', 'spark', 'heart'] as const;
+    for (let i = 0; i < 9; i++) {
+      const x0 = rnd() * 1920, y0 = rnd() * 1080, sz = 16 + rnd() * 26, kind = kinds[Math.floor(rnd() * 4)]!;
+      if (x0 > 260 && x0 < 1660 && y0 > 200 && y0 < 880) continue; // keep the middle clear
+      doodle(c, kind, x0 + Math.sin(t * 0.4 + i) * 6, y0 + Math.cos(t * 0.35 + i) * 5, sz, col2);
+    }
+    // a few dots of colour like stickers
+    for (let i = 0; i < 5; i++) {
+      const x0 = rnd() * 1920, y0 = rnd() * 1080;
+      if (x0 > 260 && x0 < 1660 && y0 > 200 && y0 < 880) continue;
+      c.fillStyle = [C.amarillo, C.verde, C.naranja, C.morado][i % 4]!; c.globalAlpha = 0.25 * alpha;
+      c.beginPath(); c.arc(x0, y0, 8 + rnd() * 10, 0, Math.PI * 2); c.fill(); c.globalAlpha = 1;
+    }
+    return;
+  }
   c.save();
   const col = onBlue ? C.blanco : C.azul;
   for (let i = 0; i < 14; i++) {

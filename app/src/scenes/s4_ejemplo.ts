@@ -6,7 +6,7 @@
 // stamp drops on the client card (2–3 frames of shake). A green stroke underlines the inflation arrow,
 // then strikes the stamp: the delay came from the context, not the person.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, Plate, at, Cutout, type CutKey, decor, glow, burst, ripple, float, clamp, ease, icon, inn, labelPill, lerp, pop, pt, quadPts, rrect, stampShake, strokeTrim, text, polyAt, hexA } from './_icesi';
+import { C, Plate, at, Cutout, type CutKey, decor, glow, burst, ripple, float, clamp, ease, icon, inn, labelPill, lerp, pop, pt, quadPts, rrect, stampShake, strokeTrim, text, polyAt, hexA , tornPaper, staple, clip, scratchOut, doodleArrow , tape } from './_icesi';
 
 const CAL = { x: 1150, y: 220, w: 620, h: 470, cols: 7, rows: 4 };
 const CARD = { x: 1060, y: 560, w: 380, h: 200 };
@@ -91,6 +91,7 @@ export default class S4 extends Plate {
       c.fillStyle = C.blanco; c.fill();
       c.strokeStyle = C.azul; c.lineWidth = 6; c.stroke();
       text(c, 'Inflación ↑', 0, 30, { w: 600, size: 38, col: C.azul, align: 'center' });
+      tape(c, -100, -50, 90, -0.7, undefined, 12);
     });
 
     // the person
@@ -108,6 +109,7 @@ export default class S4 extends Plate {
     c.strokeStyle = C.azul; c.lineWidth = 6; c.stroke();
     c.fillStyle = C.azul; rrect(c, CAL.x, CAL.y, CAL.w, 90, [24, 24, 0, 0]); c.fill();
     for (const rx of [0.25, 0.75]) { rrect(c, CAL.x + CAL.w * rx - 8, CAL.y - 26, 16, 52, 8); c.fill(); }
+    clip(c, CAL.x + CAL.w - 60, CAL.y + 20, -0.2, 1.3);
     c.lineWidth = 3; c.strokeStyle = hexA(C.azul, 0.55);
     for (let i = 1; i < CAL.cols; i++) { c.beginPath(); c.moveTo(CAL.x + i * cw, CAL.y + 90); c.lineTo(CAL.x + i * cw, CAL.y + CAL.h); c.stroke(); }
     for (let j = 1; j < CAL.rows; j++) { c.beginPath(); c.moveTo(CAL.x, CAL.y + 90 + j * ch); c.lineTo(CAL.x + CAL.w, CAL.y + 90 + j * ch); c.stroke(); }
@@ -127,10 +129,8 @@ export default class S4 extends Plate {
     // the client card
     const k = pop(t, t0 + 0.45, 0.45);
     at(c, CARD.x + CARD.w / 2, CARD.y + CARD.h / 2, { s: k }, () => {
-      c.shadowColor = 'rgba(0,0,0,0.12)'; c.shadowBlur = 24; c.shadowOffsetY = 8;
-      rrect(c, -CARD.w / 2, -CARD.h / 2, CARD.w, CARD.h, 22); c.fillStyle = C.blanco; c.fill();
-      c.shadowColor = 'transparent';
-      c.strokeStyle = C.gris2; c.lineWidth = 3; c.stroke();
+      c.rotate(-0.02); tornPaper(c, CARD.w, CARD.h, '#FFFDF6', 21);
+      staple(c, -CARD.w / 2 + 60, -CARD.h / 2 + 14, -0.3);
       at(c, -CARD.w / 2 + 76, 0, {}, () => icon.person(c, 90, C.morado));
       c.fillStyle = C.gris2;
       rrect(c, -CARD.w / 2 + 150, -42, 180, 18, 9); c.fill();
@@ -155,8 +155,9 @@ export default class S4 extends Plate {
     if (xk > 0) {
       c.strokeStyle = C.verde; c.lineWidth = 16;
       const mx = CARD.x + CARD.w / 2, my = CARD.y + CARD.h / 2;
-      glow(c, hexA(C.verde, 0.8), 20, () => strokeTrim(c, [pt(mx - 220, my + 46), pt(mx + 220, my - 70)], xk));
+      glow(c, hexA(C.verde, 0.7), 14, () => scratchOut(c, mx - 200, my - 50, 400, 90, xk, C.verde, 9));
     }
+    doodleArrow(c, pt(900, 520), pt(1010, 420), pt(1090, 600), ease.inOutCubic(clamp((t - this.tCtx - 0.2) / 0.5)), C.verde, 8);
     c.restore();
 
     // on the band

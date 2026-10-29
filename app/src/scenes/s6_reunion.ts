@@ -4,7 +4,7 @@
 // A whiteboard with a blue frame, seen head on. Two yellow sticky notes stick on (−3° and 2°, soft
 // Gris 2 shadow). A flat hand draws a blue circle around the second one.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, Plate, at, decor, glow, burst, hexA, SKIN, circlePts, clamp, ease, inn, lerp, polyAt, rrect, strokeTrim, text, wrap } from './_icesi';
+import { C, Plate, at, decor, glow, burst, hexA, SKIN, circlePts, clamp, ease, inn, lerp, polyAt, rrect, strokeTrim, text, wrap , doodle, measureText, pt } from './_icesi';
 
 const NOTES = [
   { cx: 590, cy: 600, r: -3, s: '¿Cada cuánto revisamos nuestros modelos?' },
@@ -36,6 +36,8 @@ export default class S6 extends Plate {
     });
     const hk = inn(t, this.tHead, 0.4);
     text(c, 'Lleva dos preguntas a tu próxima reunión:', 270 + (1 - hk) * -20, 230, { w: 600, size: 46, col: C.azul, alpha: hk });
+    { const hw = measureText(c, 'Lleva dos preguntas a tu próxima reunión:', 600, 46); c.save(); c.strokeStyle = C.amarillo; c.lineWidth = 10; strokeTrim(c, [pt(266, 248), pt(270 + hw, 244)], ease.inOutCubic(clamp((t - this.tHead - 0.3) / 0.5))); c.restore();
+      doodle(c, 'star', 300 + hw + 40, 210, 26, C.amarillo, ease.inOutCubic(clamp((t - this.tHead - 0.7) / 0.4))); doodle(c, 'spark', 300 + hw + 100, 240, 18, C.azul, ease.inOutCubic(clamp((t - this.tHead - 0.8) / 0.3))); }
 
     // sticky notes
     NOTES.forEach((n, i) => {

@@ -7,7 +7,7 @@
 // gets a thick orange underline drawn left to right.
 import type { Frame, PostOverrides } from '../engine/scene';
 import type { Word } from '../engine/lyrics';
-import { C, Plate, at, decor, float, glow, hexA, clamp, ease, fit, icon, inn, labelPill, lerp, measureText, mixHex, pop, rrect, text } from './_icesi';
+import { C, Plate, at, decor, float, glow, hexA, clamp, ease, fit, icon, inn, labelPill, lerp, measureText, mixHex, pop, rrect, text , tornPaper, tape, strokeTrim, pt, type P , staple } from './_icesi';
 
 const CW = 330, CH = 150, GAP = 28, X0 = 257, Y0 = 250;
 const OFF = [4, 1, 5, 2]; // cards that switch off, in order
@@ -38,7 +38,7 @@ export default class S2 extends Plate {
     // board label
     const li = inn(t, this.tLabel, 0.4);
     at(c, X0 + (3 * CW + 2 * GAP) / 2, Y0 - 66, { a: li, dy: (1 - li) * 16 }, () =>
-      labelPill(c, 'Modelo de crédito', 0, 0, { fill: 'rgba(255,255,255,0.16)', col: C.blanco, size: 32, w: 600 }));
+      { tornPaper(c, 380, 70, C.amarillo, 4); text(c, 'Modelo de crédito', 0, 11, { w: 700, size: 32, col: C.azul, align: 'center' }); tape(c, -170, -30, 80, -0.4, undefined, 5); });
 
     // client cards
     for (let i = 0; i < 6; i++) {
@@ -49,7 +49,7 @@ export default class S2 extends Plate {
       const off = oi < 0 ? 0 : ease.outCubic(clamp((t - this.tDim - oi * 0.15) / 0.3));
       at(c, x + CW / 2, y + CH / 2 + float(t, i, 4, 1.4) + off * 6, { s }, () => {
         c.save(); c.shadowColor = 'rgba(20,20,90,0.28)'; c.shadowBlur = 26; c.shadowOffsetY = 12 * (1 - off);
-        rrect(c, -CW / 2, -CH / 2, CW, CH, 22);
+        rrect(c, -CW / 2, -CH / 2, CW, CH, 6);
         c.fillStyle = mixHex(C.blanco, C.gris2, off); c.fill();
         c.restore();
         at(c, -CW / 2 + 62, 0, {}, () => icon.person(c, 70, mixHex(C.morado, '#A9AAB0', off)));
@@ -59,6 +59,7 @@ export default class S2 extends Plate {
         // tiny score meter
         rrect(c, -CW / 2 + 118, 28, 170, 16, 8); c.fillStyle = mixHex('#EEF0F3', '#C3C4CA', off); c.fill();
         rrect(c, -CW / 2 + 118, 28, 170 * lerp(0.82, 0.0, off) + 0.01, 16, 8); c.fillStyle = C.verde; c.fill();
+        if (i % 2) staple(c, CW / 2 - 40, -CH / 2 + 4, 0.12 * (i - 2)); else tape(c, 0, -CH / 2, 100, (i - 2) * 0.06, undefined, i + 1);
       });
     }
 
@@ -101,7 +102,10 @@ export default class S2 extends Plate {
           if (u > 0) {
             c.fillStyle = C.naranja;
             const uw = measureText(c, 'inclusivo', W8, size);
-            glow(c, hexA(C.naranja, 0.9), 20, () => { rrect(c, x, y + 16, uw * u, 14, 7); c.fill(); });
+            c.save(); c.strokeStyle = C.naranja; c.lineWidth = 12;
+            const zz: P[] = []; for (let q = 0; q <= 12; q++) zz.push(pt(x + (uw * q) / 12, y + 22 + (q % 2 ? 8 : 0)));
+            glow(c, hexA(C.naranja, 0.8), 14, () => strokeTrim(c, [pt(x - 6, y + 20), pt(x + uw + 6, y + 18)], u));
+            c.lineWidth = 6; strokeTrim(c, zz, clamp(u * 1.4 - 0.4)); c.restore();
           }
         }
         x += ww + sp;

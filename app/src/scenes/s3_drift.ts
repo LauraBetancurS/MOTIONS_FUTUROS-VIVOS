@@ -7,7 +7,7 @@
 // green to orange. On "model drift" a dashed blue "reality" line separates from it and the gap between
 // them fills with Amarillo Icesi at 40%: that gap is the drift.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, Plate, at, outk, decor, float, glow, burst, ripple, clamp, ease, hexA, icon, inn, lerp, measureText, mixHex, pop, rrect, text, wrap } from './_icesi';
+import { C, Plate, at, outk, decor, float, glow, burst, ripple, clamp, ease, hexA, icon, inn, lerp, measureText, mixHex, pop, rrect, text, wrap , tornPaper, tape, clip, scribbleCircle, doodleArrow, pt } from './_icesi';
 
 const X0 = 200, X1 = 1340, YB = 800, YT = 250;
 const V0 = 0.86, DROPS = [0.08, 0.07, 0.08, 0.09, 0.09];
@@ -155,19 +155,23 @@ export default class S3 extends Plate {
       ripple(c, hx, hy, t, tf + 0.2, C.naranja, 10, 60, 0.6);
     });
     this.typed(c, t);
+    // marker loop around the drift gap
+    scribbleCircle(c, 1060, 470, 280, 150, ease.inOutCubic(clamp((t - this.tDrift - 0.7) / 0.6)), C.azul, 6, 4);
+    doodleArrow(c, pt(1340, 470), pt(1380, 420), pt(1410, 470), ease.inOutCubic(clamp((t - this.tDrift - 1.2) / 0.3)), C.azul, 6);
 
     // the definition box
     const bk = inn(t, this.tDrift - 0.1, 0.45);
     if (bk > 0) {
       const bx = 1420, by = 340, bw = 430, bh = 330;
       at(c, bx + bw / 2, by + bh / 2 + float(t, 2, 4, 1.2), { a: bk, s: lerp(0.92, 1, bk) }, () => {
-        c.save(); c.shadowColor = hexA(C.azul, 0.45); c.shadowBlur = 40; c.shadowOffsetY = 14;
-        rrect(c, -bw / 2, -bh / 2, bw, bh, 28); c.fillStyle = C.azul; c.fill(); c.restore();
+        c.rotate(0.02); tornPaper(c, bw, bh, C.azul, 11, { tear: 9 });
         text(c, 'Model drift', -bw / 2 + 40, -bh / 2 + 92, { w: 700, size: 58, col: C.blanco, italic: true });
         c.fillStyle = C.amarillo; rrect(c, -bw / 2 + 40, -bh / 2 + 116, 90, 10, 5); c.fill();
         wrap(c, 'Decide con datos de un mundo que ya no existe.', 400, 36, bw - 80).forEach((l, i) =>
           text(c, l, -bw / 2 + 40, -bh / 2 + 186 + i * 48, { w: 400, size: 36, col: C.blanco }));
+        tape(c, -bw / 2 + 30, -bh / 2 + 6, 120, -0.6, undefined, 3); tape(c, bw / 2 - 30, bh / 2 - 6, 120, -0.6, undefined, 8);
       });
+      clip(c, bx + bw - 70, by - 18 + float(t, 2, 4, 1.2), 0.2, 1.2);
     }
     return {};
   }

@@ -37,3 +37,10 @@ Cada animación está anclada a una palabra de la voz (data/lyrics.json), no a u
 - Música de fondo.
 
 El demo original del kit quedó respaldado en _demo_original/.
+
+## Estilo scrapbook
+Papel con textura, líneas de marcador que tiemblan, cinta, grapas, clips y movimiento tipo stop-motion (12 pasos por segundo).
+Para volver al estilo limpio: en `app/src/scenes/_icesi.ts` cambia `SCRAP = { on: true, ...` por `on: false`.
+
+## Personaje ilustrado (escena 4)
+Poses y expresiones en `app/public/personaje/` (sacadas del kit en `assets/personaje-fuente/`, de Freepik: revisar licencia/atribución).

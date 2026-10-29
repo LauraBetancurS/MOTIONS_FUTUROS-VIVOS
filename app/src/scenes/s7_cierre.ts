@@ -4,7 +4,7 @@
 // the blue route completes to a green destination pin with a soft pulse. A wipe left to right turns the
 // frame blue; the closing line and the logos come in.
 import type { Frame, PostOverrides } from '../engine/scene';
-import { C, MAP, Plate, at, decor, glow, burst, ripple, float, loadImage, measureText, clamp, drawStreets, ease, hexA, icon, inn, polyAt, pop, rrect, strokeTrim, text } from './_icesi';
+import { C, MAP, Plate, at, decor, glow, burst, ripple, float, loadImage, measureText, clamp, drawStreets, ease, hexA, icon, inn, polyAt, pop, rrect, strokeTrim, text , tornPaper, tape, pt } from './_icesi';
 
 export default class S7 extends Plate {
   tBar = 0; tBarEnd = 0; tNew = 0; tRoute = 0; tArrive = 0; tWipe = 0; tL0 = 0; tL1 = 0; tL2 = 0; tLogos = 0;
@@ -78,10 +78,18 @@ export default class S7 extends Plate {
       if (wk < 1) glow(c, hexA(C.blanco, 0.9), 30, () => { c.fillStyle = hexA(C.blanco, 0.85); c.fillRect(1920 * wk - 6, 0, 6, 1080); });
       const line = (s: string, w: number, size: number, y: number, t1: number) => {
         const ws = s.split(' '), sp = measureText(c, ' ', w, size), widths = ws.map((x) => measureText(c, x, w, size));
-        let x = 960 - (widths.reduce((a2, b2) => a2 + b2, 0) + sp * (ws.length - 1)) / 2;
+        const tw = widths.reduce((a2, b2) => a2 + b2, 0) + sp * (ws.length - 1);
+        // each line is a strip of paper torn out and taped onto the blue page
+        const pk = ease.outBack(clamp((t - t1 + 0.15) / 0.35), 1.5);
+        if (pk > 0) {
+          const rot = (y % 3 - 1) * 0.012;
+          at(c, 960, y - size * 0.33, { s: pk, r: rot }, () => tornPaper(c, tw + 70, size * 1.45, '#FFFFFF', y));
+          if (pk >= 1) tape(c, 960 - tw / 2 - 30, y - size * 0.8, 90, -0.5, undefined, y + 1);
+        }
+        let x = 960 - tw / 2;
         ws.forEach((wd, i) => {
           const k = inn(t, t1 + i * 0.07, 0.45);
-          if (k > 0) { c.save(); c.filter = k < 1 ? `blur(${((1 - k) * 6).toFixed(2)}px)` : 'none'; text(c, wd, x, y + (1 - k) * 40, { w, size, col: C.blanco, alpha: k }); c.restore(); }
+          if (k > 0) { c.save(); c.filter = k < 1 ? `blur(${((1 - k) * 6).toFixed(2)}px)` : 'none'; text(c, wd, x, y + (1 - k) * 40, { w, size, col: C.azul, alpha: k }); c.restore(); }
           x += widths[i]! + sp;
         });
       };
@@ -92,7 +100,7 @@ export default class S7 extends Plate {
       const uk = ease.inOutCubic(clamp((t - this.tL2 - 0.7) / 0.5));
       if (uk > 0) {
         const W2 = measureText(c, 'con el mapa del pasado.', 800, 96), px = 960 - W2 / 2 + measureText(c, 'con el mapa del ', 800, 96), pw = measureText(c, 'pasado', 800, 96);
-        glow(c, hexA(C.amarillo, 0.8), 18, () => { c.fillStyle = C.amarillo; rrect(c, px, 618, pw * uk, 12, 6); c.fill(); });
+        c.save(); c.globalCompositeOperation = 'multiply'; c.strokeStyle = C.amarillo; c.lineWidth = 46; strokeTrim(c, [pt(px - 6, 562), pt(px + pw + 6, 558)], uk); c.restore();
       }
 
       // logos: InnLab · Icesi · ACH (white on blue)
