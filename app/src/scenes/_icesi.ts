@@ -405,9 +405,9 @@ export abstract class Plate extends Scene {
   abstract draw(c: CanvasRenderingContext2D, t: number, f: Frame): PostOverrides | void;
   override render(f: Frame, out: THREE.WebGLRenderTarget): PostOverrides {
     const c = this.L.ctx;
-    // stop-motion: the picture advances in steps (12 per second); no frame shake
+    // smooth motion: no stop-motion steps and no frame shake
     const step = SCRAP.on ? Math.floor(f.t * SCRAP.fps) : 0;
-    const t = SCRAP.on ? Math.max(this.ctx.start, step / SCRAP.fps) : f.t;
+    const t = f.t; // smooth motion (no stop-motion steps)
     SCRAP.step = step;
     const r = this.prevBg ? ease.inOutCubic(clamp((t - this.ctx.start) / this.revealDur)) : 1;
     this.L.clear(r < 1 ? this.prevBg : C.blanco);
