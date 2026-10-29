@@ -20,22 +20,26 @@ export function makeTimeline(ly: Lyrics, au: AudioData): TimelineEntry[] {
     return l.start - Math.min(0.18, Math.max(0.04, gap * 0.45));
   };
   const b = {
+    gps: cut('Imagina que manejas'),
     insight: cut('Lo mismo le puede'),
     drift: cut('Un modelo puede ser'),
     ejemplo: cut('Un ejemplo'),
     importa: cut('te importa'),
     reunion: cut('Lleva dos preguntas'),
     cierre: cut('Porque un modelo'),
+    final: au.duration - 3.6, // la carátula final ocupa los últimos 3,6 s (silencio al final del audio)
     end: au.duration,
   };
   const E = (id: string, start: number, end: number): TimelineEntry => ({ id, load: scene(id), start, end });
   return [
-    E('s1_gps', 0, b.insight),
+    E('s0_portada', 0, b.gps),
+    E('s1_gps', b.gps, b.insight),
     E('s2_insight', b.insight, b.drift),
     E('s3_drift', b.drift, b.ejemplo),
     E('s4_ejemplo', b.ejemplo, b.importa),
     E('s5_importa', b.importa, b.reunion),
     E('s6_reunion', b.reunion, b.cierre),
-    E('s7_cierre', b.cierre, b.end),
+    E('s7_cierre', b.cierre, b.final),
+    E('s8_final', b.final, b.end),
   ];
 }

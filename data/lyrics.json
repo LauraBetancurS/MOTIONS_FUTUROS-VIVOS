@@ -3,1231 +3,1231 @@
  "lines": [
   {
    "text": "Imagina que manejas con un GPS que no se actualiza hace dos años.",
-   "start": 0.07,
-   "end": 4.19,
+   "start": 3.27,
+   "end": 7.39,
    "words": [
     {
      "w": "Imagina",
-     "start": 0.07,
-     "end": 0.57
+     "start": 3.27,
+     "end": 3.78
     },
     {
      "w": "que",
-     "start": 0.57,
-     "end": 0.72
+     "start": 3.78,
+     "end": 3.92
     },
     {
      "w": "manejas",
-     "start": 0.72,
-     "end": 1.16
+     "start": 3.92,
+     "end": 4.36
     },
     {
      "w": "con",
-     "start": 1.16,
-     "end": 1.36
+     "start": 4.36,
+     "end": 4.58
     },
     {
      "w": "un",
-     "start": 1.36,
-     "end": 1.52
+     "start": 4.58,
+     "end": 4.72
     },
     {
      "w": "GPS",
-     "start": 1.52,
-     "end": 2.16,
+     "start": 4.72,
+     "end": 5.36,
      "syl": [
       [
-       1.52,
-       1.7
+       4.72,
+       4.9
       ],
       [
-       1.7,
-       1.92
+       4.9,
+       5.12
       ],
       [
-       1.92,
-       2.16
+       5.12,
+       5.36
       ]
      ]
     },
     {
      "w": "que",
-     "start": 2.16,
-     "end": 2.42
+     "start": 5.36,
+     "end": 5.62
     },
     {
      "w": "no",
-     "start": 2.42,
-     "end": 2.6
+     "start": 5.62,
+     "end": 5.8
     },
     {
      "w": "se",
-     "start": 2.6,
-     "end": 2.68
+     "start": 5.8,
+     "end": 5.88
     },
     {
      "w": "actualiza",
-     "start": 2.68,
-     "end": 3.34
+     "start": 5.88,
+     "end": 6.54
     },
     {
      "w": "hace",
-     "start": 3.34,
-     "end": 3.66
+     "start": 6.54,
+     "end": 6.86
     },
     {
      "w": "dos",
-     "start": 3.66,
-     "end": 4.0
+     "start": 6.86,
+     "end": 7.18
     },
     {
      "w": "años.",
-     "start": 4.0,
-     "end": 4.19
+     "start": 7.18,
+     "end": 7.39
     }
    ]
   },
   {
    "text": "Te lleva, sí… pero por calles que ya no existen.",
-   "start": 4.68,
-   "end": 8.14,
+   "start": 7.88,
+   "end": 11.34,
    "words": [
     {
      "w": "Te",
-     "start": 4.68,
-     "end": 4.84
+     "start": 7.88,
+     "end": 8.04
     },
     {
      "w": "lleva,",
-     "start": 4.84,
-     "end": 5.25
+     "start": 8.04,
+     "end": 8.45
     },
     {
      "w": "sí…",
-     "start": 5.48,
-     "end": 5.83
+     "start": 8.68,
+     "end": 9.03
     },
     {
      "w": "pero",
-     "start": 6.24,
-     "end": 6.48
+     "start": 9.44,
+     "end": 9.68
     },
     {
      "w": "por",
-     "start": 6.48,
-     "end": 6.67
+     "start": 9.68,
+     "end": 9.87
     },
     {
      "w": "calles",
-     "start": 6.67,
-     "end": 7.06
+     "start": 9.87,
+     "end": 10.24
     },
     {
      "w": "que",
-     "start": 7.06,
-     "end": 7.26
+     "start": 10.24,
+     "end": 10.46
     },
     {
      "w": "ya",
-     "start": 7.26,
-     "end": 7.42
+     "start": 10.46,
+     "end": 10.64
     },
     {
      "w": "no",
-     "start": 7.42,
-     "end": 7.56
+     "start": 10.64,
+     "end": 10.76
     },
     {
      "w": "existen.",
-     "start": 7.56,
-     "end": 8.14
+     "start": 10.76,
+     "end": 11.34
     }
    ]
   },
   {
    "text": "Lo mismo le puede pasar a un modelo de crédito.",
-   "start": 8.47,
-   "end": 10.81,
+   "start": 11.67,
+   "end": 14.01,
    "words": [
     {
      "w": "Lo",
-     "start": 8.47,
-     "end": 8.74
+     "start": 11.67,
+     "end": 11.94
     },
     {
      "w": "mismo",
-     "start": 8.74,
-     "end": 9.1
+     "start": 11.94,
+     "end": 12.3
     },
     {
      "w": "le",
-     "start": 9.1,
-     "end": 9.24
+     "start": 12.3,
+     "end": 12.44
     },
     {
      "w": "puede",
-     "start": 9.24,
-     "end": 9.48
+     "start": 12.44,
+     "end": 12.68
     },
     {
      "w": "pasar",
-     "start": 9.48,
-     "end": 9.84
+     "start": 12.68,
+     "end": 13.0
     },
     {
      "w": "a",
-     "start": 9.84,
-     "end": 9.88
+     "start": 13.0,
+     "end": 13.04
     },
     {
      "w": "un",
-     "start": 9.88,
-     "end": 10.04
+     "start": 13.04,
+     "end": 13.24
     },
     {
      "w": "modelo",
-     "start": 10.04,
-     "end": 10.3
+     "start": 13.24,
+     "end": 13.48
     },
     {
      "w": "de",
-     "start": 10.3,
-     "end": 10.44
+     "start": 13.48,
+     "end": 13.6
     },
     {
      "w": "crédito.",
-     "start": 10.44,
-     "end": 10.81
+     "start": 13.6,
+     "end": 14.01
     }
    ]
   },
   {
    "text": "Y la consecuencia es clara: si no se reentrena y no se puede explicar, deja de ser inclusivo.",
-   "start": 11.28,
-   "end": 17.37,
+   "start": 14.48,
+   "end": 20.57,
    "words": [
     {
      "w": "Y",
-     "start": 11.28,
-     "end": 11.36
+     "start": 14.48,
+     "end": 14.58
     },
     {
      "w": "la",
-     "start": 11.36,
-     "end": 11.5
+     "start": 14.58,
+     "end": 14.7
     },
     {
      "w": "consecuencia",
-     "start": 11.5,
-     "end": 12.24
+     "start": 14.7,
+     "end": 15.44
     },
     {
      "w": "es",
-     "start": 12.24,
-     "end": 12.4
+     "start": 15.44,
+     "end": 15.6
     },
     {
      "w": "clara:",
-     "start": 12.4,
-     "end": 12.78
+     "start": 15.6,
+     "end": 15.98
     },
     {
      "w": "si",
-     "start": 13.11,
-     "end": 13.4
-    },
-    {
-     "w": "no",
-     "start": 13.4,
-     "end": 13.58
-    },
-    {
-     "w": "se",
-     "start": 13.58,
-     "end": 13.74
-    },
-    {
-     "w": "reentrena",
-     "start": 13.74,
-     "end": 14.45
-    },
-    {
-     "w": "y",
-     "start": 14.45,
-     "end": 14.68
-    },
-    {
-     "w": "no",
-     "start": 14.68,
-     "end": 14.84
-    },
-    {
-     "w": "se",
-     "start": 14.84,
-     "end": 14.96
-    },
-    {
-     "w": "puede",
-     "start": 14.96,
-     "end": 15.3
-    },
-    {
-     "w": "explicar,",
-     "start": 15.3,
-     "end": 15.8
-    },
-    {
-     "w": "deja",
-     "start": 16.03,
-     "end": 16.46
-    },
-    {
-     "w": "de",
-     "start": 16.46,
+     "start": 16.31,
      "end": 16.6
     },
     {
-     "w": "ser",
+     "w": "no",
      "start": 16.6,
      "end": 16.78
     },
     {
-     "w": "inclusivo.",
+     "w": "se",
      "start": 16.78,
-     "end": 17.37
+     "end": 16.92
+    },
+    {
+     "w": "reentrena",
+     "start": 16.92,
+     "end": 17.65
+    },
+    {
+     "w": "y",
+     "start": 17.65,
+     "end": 17.88
+    },
+    {
+     "w": "no",
+     "start": 17.88,
+     "end": 18.04
+    },
+    {
+     "w": "se",
+     "start": 18.04,
+     "end": 18.18
+    },
+    {
+     "w": "puede",
+     "start": 18.18,
+     "end": 18.48
+    },
+    {
+     "w": "explicar,",
+     "start": 18.48,
+     "end": 19.0
+    },
+    {
+     "w": "deja",
+     "start": 19.23,
+     "end": 19.66
+    },
+    {
+     "w": "de",
+     "start": 19.66,
+     "end": 19.8
+    },
+    {
+     "w": "ser",
+     "start": 19.8,
+     "end": 19.98
+    },
+    {
+     "w": "inclusivo.",
+     "start": 19.98,
+     "end": 20.57
     }
    ]
   },
   {
    "text": "Un modelo puede ser muy preciso el día que se lanza.",
-   "start": 17.8,
-   "end": 20.58,
+   "start": 21.0,
+   "end": 23.78,
    "words": [
     {
      "w": "Un",
-     "start": 17.8,
-     "end": 17.94
+     "start": 21.0,
+     "end": 21.16
     },
     {
      "w": "modelo",
-     "start": 17.94,
-     "end": 18.4
+     "start": 21.16,
+     "end": 21.6
     },
     {
      "w": "puede",
-     "start": 18.4,
-     "end": 18.7
+     "start": 21.6,
+     "end": 21.88
     },
     {
      "w": "ser",
-     "start": 18.7,
-     "end": 18.96
+     "start": 21.88,
+     "end": 22.16
     },
     {
      "w": "muy",
-     "start": 18.96,
-     "end": 19.22
+     "start": 22.16,
+     "end": 22.42
     },
     {
      "w": "preciso",
-     "start": 19.22,
-     "end": 19.68
+     "start": 22.42,
+     "end": 22.88
     },
     {
      "w": "el",
-     "start": 19.68,
-     "end": 19.82
+     "start": 22.88,
+     "end": 23.02
     },
     {
      "w": "día",
-     "start": 19.82,
-     "end": 20.04
+     "start": 23.02,
+     "end": 23.24
     },
     {
      "w": "que",
-     "start": 20.04,
-     "end": 20.16
+     "start": 23.24,
+     "end": 23.36
     },
     {
      "w": "se",
-     "start": 20.16,
-     "end": 20.3
+     "start": 23.36,
+     "end": 23.5
     },
     {
      "w": "lanza.",
-     "start": 20.3,
-     "end": 20.58
+     "start": 23.5,
+     "end": 23.78
     }
    ]
   },
   {
    "text": "Pero el mundo cambia: los precios, los ingresos, las normas, los fraudes y la forma en que la gente paga.",
-   "start": 20.97,
-   "end": 27.88,
+   "start": 24.16,
+   "end": 31.08,
    "words": [
     {
      "w": "Pero",
-     "start": 20.97,
-     "end": 21.16
+     "start": 24.16,
+     "end": 24.34
     },
     {
      "w": "el",
-     "start": 21.16,
-     "end": 21.28
+     "start": 24.34,
+     "end": 24.48
     },
     {
      "w": "mundo",
-     "start": 21.28,
-     "end": 21.64
+     "start": 24.48,
+     "end": 24.84
     },
     {
      "w": "cambia:",
-     "start": 21.64,
-     "end": 22.08
+     "start": 24.84,
+     "end": 25.28
     },
     {
      "w": "los",
-     "start": 22.37,
-     "end": 22.64
+     "start": 25.57,
+     "end": 25.84
     },
     {
      "w": "precios,",
-     "start": 22.64,
-     "end": 23.34
+     "start": 25.84,
+     "end": 26.54
     },
     {
      "w": "los",
-     "start": 23.34,
-     "end": 23.52
+     "start": 26.54,
+     "end": 26.72
     },
     {
      "w": "ingresos,",
-     "start": 23.52,
-     "end": 24.32
+     "start": 26.72,
+     "end": 27.52
     },
     {
      "w": "las",
-     "start": 24.32,
-     "end": 24.66
+     "start": 27.52,
+     "end": 27.86
     },
     {
      "w": "normas,",
-     "start": 24.66,
-     "end": 25.17
+     "start": 27.86,
+     "end": 28.37
     },
     {
      "w": "los",
-     "start": 25.42,
-     "end": 25.68
+     "start": 28.62,
+     "end": 28.88
     },
     {
      "w": "fraudes",
-     "start": 25.68,
-     "end": 26.26
+     "start": 28.88,
+     "end": 29.46
     },
     {
      "w": "y",
-     "start": 26.26,
-     "end": 26.36
+     "start": 29.46,
+     "end": 29.58
     },
     {
      "w": "la",
-     "start": 26.36,
-     "end": 26.48
+     "start": 29.58,
+     "end": 29.78
     },
     {
      "w": "forma",
-     "start": 26.58,
-     "end": 26.86
+     "start": 29.78,
+     "end": 30.06
     },
     {
      "w": "en",
-     "start": 26.86,
-     "end": 26.96
+     "start": 30.06,
+     "end": 30.18
     },
     {
      "w": "que",
-     "start": 26.96,
-     "end": 27.08
+     "start": 30.18,
+     "end": 30.28
     },
     {
      "w": "la",
-     "start": 27.08,
-     "end": 27.26
+     "start": 30.28,
+     "end": 30.46
     },
     {
      "w": "gente",
-     "start": 27.26,
-     "end": 27.56
+     "start": 30.46,
+     "end": 30.78
     },
     {
      "w": "paga.",
-     "start": 27.56,
-     "end": 27.88
+     "start": 30.78,
+     "end": 31.08
     }
    ]
   },
   {
    "text": "Si el modelo no se actualiza, sigue decidiendo con datos de un mundo que ya no existe.",
-   "start": 28.19,
-   "end": 33.0,
+   "start": 31.39,
+   "end": 36.34,
    "words": [
     {
      "w": "Si",
-     "start": 28.19,
-     "end": 28.34
+     "start": 31.39,
+     "end": 31.5
     },
     {
      "w": "el",
-     "start": 28.34,
-     "end": 28.42
+     "start": 31.5,
+     "end": 31.62
     },
     {
      "w": "modelo",
-     "start": 28.42,
-     "end": 28.9
+     "start": 31.62,
+     "end": 32.1
     },
     {
      "w": "no",
-     "start": 28.9,
-     "end": 29.08
+     "start": 32.1,
+     "end": 32.28
     },
     {
      "w": "se",
-     "start": 29.08,
-     "end": 29.16
+     "start": 32.28,
+     "end": 32.36
     },
     {
      "w": "actualiza,",
-     "start": 29.16,
-     "end": 29.88
+     "start": 32.36,
+     "end": 33.08
     },
     {
      "w": "sigue",
-     "start": 29.88,
-     "end": 30.28
+     "start": 33.08,
+     "end": 33.48
     },
     {
      "w": "decidiendo",
-     "start": 30.28,
-     "end": 30.9
+     "start": 33.48,
+     "end": 34.1
     },
     {
      "w": "con",
-     "start": 30.9,
-     "end": 31.08
+     "start": 34.1,
+     "end": 34.28
     },
     {
      "w": "datos",
-     "start": 31.08,
-     "end": 31.42
+     "start": 34.28,
+     "end": 34.64
     },
     {
      "w": "de",
-     "start": 31.42,
-     "end": 31.78
+     "start": 34.64,
+     "end": 34.96
     },
     {
      "w": "un",
-     "start": 31.78,
-     "end": 31.9
+     "start": 34.96,
+     "end": 35.1
     },
     {
      "w": "mundo",
-     "start": 31.9,
-     "end": 32.08
+     "start": 35.1,
+     "end": 35.28
     },
     {
      "w": "que",
-     "start": 32.08,
-     "end": 32.29
+     "start": 35.28,
+     "end": 35.5
     },
     {
      "w": "ya",
-     "start": 32.29,
-     "end": 32.46
+     "start": 35.5,
+     "end": 35.68
     },
     {
      "w": "no",
-     "start": 32.46,
-     "end": 32.6
+     "start": 35.68,
+     "end": 35.8
     },
     {
      "w": "existe.",
-     "start": 32.6,
-     "end": 33.0
+     "start": 35.8,
+     "end": 36.34
     }
    ]
   },
   {
    "text": "A eso se le llama model drift.",
-   "start": 33.45,
-   "end": 35.31,
+   "start": 36.65,
+   "end": 38.51,
    "words": [
     {
      "w": "A",
-     "start": 33.45,
-     "end": 33.7
+     "start": 36.65,
+     "end": 36.9
     },
     {
      "w": "eso",
-     "start": 33.7,
-     "end": 33.94
+     "start": 36.9,
+     "end": 37.14
     },
     {
      "w": "se",
-     "start": 33.94,
-     "end": 34.1
+     "start": 37.14,
+     "end": 37.28
     },
     {
      "w": "le",
-     "start": 34.1,
-     "end": 34.22
+     "start": 37.28,
+     "end": 37.4
     },
     {
      "w": "llama",
-     "start": 34.22,
-     "end": 34.61
+     "start": 37.4,
+     "end": 37.83
     },
     {
      "w": "model",
-     "start": 34.76,
-     "end": 35.1
+     "start": 37.83,
+     "end": 38.3
     },
     {
      "w": "drift.",
-     "start": 35.1,
-     "end": 35.31
+     "start": 38.3,
+     "end": 38.51
     }
    ]
   },
   {
    "text": "Un ejemplo: un cliente se atrasa en un pago justo después de una subida fuerte de la inflación.",
-   "start": 35.86,
-   "end": 41.14,
+   "start": 39.06,
+   "end": 44.34,
    "words": [
     {
      "w": "Un",
-     "start": 35.86,
-     "end": 36.02
+     "start": 39.06,
+     "end": 39.22
     },
     {
      "w": "ejemplo:",
-     "start": 36.02,
-     "end": 36.28
+     "start": 39.22,
+     "end": 39.48
     },
     {
      "w": "un",
-     "start": 36.78,
-     "end": 36.94
+     "start": 39.98,
+     "end": 40.14
     },
     {
      "w": "cliente",
-     "start": 36.94,
-     "end": 37.38
+     "start": 40.14,
+     "end": 40.58
     },
     {
      "w": "se",
-     "start": 37.38,
-     "end": 37.58
+     "start": 40.58,
+     "end": 40.78
     },
     {
      "w": "atrasa",
-     "start": 37.58,
-     "end": 37.82
+     "start": 40.78,
+     "end": 41.02
     },
     {
      "w": "en",
-     "start": 37.82,
-     "end": 37.96
+     "start": 41.02,
+     "end": 41.16
     },
     {
      "w": "un",
-     "start": 37.96,
-     "end": 38.1
+     "start": 41.16,
+     "end": 41.28
     },
     {
      "w": "pago",
-     "start": 38.1,
-     "end": 38.5
+     "start": 41.28,
+     "end": 41.7
     },
     {
      "w": "justo",
-     "start": 38.5,
-     "end": 38.92
+     "start": 41.7,
+     "end": 42.1
     },
     {
      "w": "después",
-     "start": 38.92,
-     "end": 39.3
+     "start": 42.1,
+     "end": 42.5
     },
     {
      "w": "de",
-     "start": 39.3,
-     "end": 39.46
+     "start": 42.5,
+     "end": 42.66
     },
     {
      "w": "una",
-     "start": 39.46,
-     "end": 39.64
+     "start": 42.66,
+     "end": 42.86
     },
     {
      "w": "subida",
-     "start": 39.64,
-     "end": 40.06
+     "start": 42.86,
+     "end": 43.26
     },
     {
      "w": "fuerte",
-     "start": 40.06,
-     "end": 40.5
+     "start": 43.26,
+     "end": 43.68
     },
     {
      "w": "de",
-     "start": 40.5,
-     "end": 40.6
+     "start": 43.68,
+     "end": 43.8
     },
     {
      "w": "la",
-     "start": 40.6,
-     "end": 40.66
+     "start": 43.8,
+     "end": 43.86
     },
     {
      "w": "inflación.",
-     "start": 40.66,
-     "end": 41.14
+     "start": 43.86,
+     "end": 44.34
     }
    ]
   },
   {
    "text": "El modelo lo marca como riesgoso, pero el problema fue el contexto, no la persona.",
-   "start": 41.54,
-   "end": 46.77,
+   "start": 44.74,
+   "end": 49.97,
    "words": [
     {
      "w": "El",
-     "start": 41.54,
-     "end": 41.68
+     "start": 44.74,
+     "end": 44.88
     },
     {
      "w": "modelo",
-     "start": 41.68,
-     "end": 42.14
+     "start": 44.88,
+     "end": 45.36
     },
     {
      "w": "lo",
-     "start": 42.14,
-     "end": 42.3
+     "start": 45.36,
+     "end": 45.48
     },
     {
      "w": "marca",
-     "start": 42.3,
-     "end": 42.58
+     "start": 45.48,
+     "end": 45.78
     },
     {
      "w": "como",
-     "start": 42.58,
-     "end": 42.82
+     "start": 45.78,
+     "end": 46.02
     },
     {
      "w": "riesgoso,",
-     "start": 42.82,
-     "end": 43.32
+     "start": 46.02,
+     "end": 46.57
     },
     {
      "w": "pero",
-     "start": 43.32,
-     "end": 43.96
+     "start": 46.98,
+     "end": 47.14
     },
     {
      "w": "el",
-     "start": 43.96,
-     "end": 44.08
+     "start": 47.14,
+     "end": 47.28
     },
     {
      "w": "problema",
-     "start": 44.08,
-     "end": 44.56
+     "start": 47.28,
+     "end": 47.91
     },
     {
      "w": "fue",
-     "start": 44.56,
-     "end": 44.71
+     "start": 47.91,
+     "end": 48.04
     },
     {
      "w": "el",
-     "start": 44.71,
-     "end": 44.97
+     "start": 48.04,
+     "end": 48.17
     },
     {
      "w": "contexto,",
-     "start": 44.97,
-     "end": 45.67
+     "start": 48.17,
+     "end": 48.87
     },
     {
      "w": "no",
-     "start": 45.89,
-     "end": 46.16
+     "start": 49.09,
+     "end": 49.36
     },
     {
      "w": "la",
-     "start": 46.16,
-     "end": 46.3
+     "start": 49.36,
+     "end": 49.5
     },
     {
      "w": "persona.",
-     "start": 46.3,
-     "end": 46.77
+     "start": 49.5,
+     "end": 49.97
     }
    ]
   },
   {
    "text": "¿Por qué te importa?",
-   "start": 47.22,
-   "end": 48.06,
+   "start": 50.42,
+   "end": 51.27,
    "words": [
     {
      "w": "¿Por",
-     "start": 47.22,
-     "end": 47.38
+     "start": 50.42,
+     "end": 50.58
     },
     {
      "w": "qué",
-     "start": 47.38,
-     "end": 47.51
+     "start": 50.58,
+     "end": 50.71
     },
     {
      "w": "te",
-     "start": 47.51,
-     "end": 47.58
+     "start": 50.71,
+     "end": 50.78
     },
     {
      "w": "importa?",
-     "start": 47.58,
-     "end": 48.06
+     "start": 50.78,
+     "end": 51.27
     }
    ]
   },
   {
    "text": "Si tu equipo usa o supervisa estos modelos, no basta con saber cuánto aciertan en promedio.",
-   "start": 48.42,
-   "end": 53.91,
+   "start": 51.62,
+   "end": 57.11,
    "words": [
     {
      "w": "Si",
-     "start": 48.42,
-     "end": 48.6
-    },
-    {
-     "w": "tu",
-     "start": 48.6,
-     "end": 48.76
-    },
-    {
-     "w": "equipo",
-     "start": 48.76,
-     "end": 49.11
-    },
-    {
-     "w": "usa",
-     "start": 49.11,
-     "end": 49.44
-    },
-    {
-     "w": "o",
-     "start": 49.44,
-     "end": 49.62
-    },
-    {
-     "w": "supervisa",
-     "start": 49.62,
-     "end": 50.26
-    },
-    {
-     "w": "estos",
-     "start": 50.26,
-     "end": 50.56
-    },
-    {
-     "w": "modelos,",
-     "start": 50.56,
-     "end": 51.08
-    },
-    {
-     "w": "no",
-     "start": 51.23,
-     "end": 51.46
-    },
-    {
-     "w": "basta",
-     "start": 51.46,
+     "start": 51.62,
      "end": 51.8
     },
     {
-     "w": "con",
+     "w": "tu",
      "start": 51.8,
-     "end": 51.96
+     "end": 51.93
+    },
+    {
+     "w": "equipo",
+     "start": 51.93,
+     "end": 52.31
+    },
+    {
+     "w": "usa",
+     "start": 52.31,
+     "end": 52.74
+    },
+    {
+     "w": "o",
+     "start": 52.74,
+     "end": 52.8
+    },
+    {
+     "w": "supervisa",
+     "start": 52.8,
+     "end": 53.46
+    },
+    {
+     "w": "estos",
+     "start": 53.46,
+     "end": 53.76
+    },
+    {
+     "w": "modelos,",
+     "start": 53.76,
+     "end": 54.29
+    },
+    {
+     "w": "no",
+     "start": 54.43,
+     "end": 54.68
+    },
+    {
+     "w": "basta",
+     "start": 54.68,
+     "end": 55.0
+    },
+    {
+     "w": "con",
+     "start": 55.0,
+     "end": 55.16
     },
     {
      "w": "saber",
-     "start": 51.96,
-     "end": 52.28
+     "start": 55.16,
+     "end": 55.48
     },
     {
      "w": "cuánto",
-     "start": 52.42,
-     "end": 52.78
+     "start": 55.62,
+     "end": 55.93
     },
     {
      "w": "aciertan",
-     "start": 52.78,
-     "end": 53.32
+     "start": 55.93,
+     "end": 56.5
     },
     {
      "w": "en",
-     "start": 53.32,
-     "end": 53.4
+     "start": 56.5,
+     "end": 56.6
     },
     {
      "w": "promedio.",
-     "start": 53.4,
-     "end": 53.91
+     "start": 56.6,
+     "end": 57.11
     }
    ]
   },
   {
    "text": "Hay que saber dónde fallan, con quién y en qué momentos.",
-   "start": 54.24,
-   "end": 57.82,
+   "start": 57.44,
+   "end": 61.02,
    "words": [
     {
      "w": "Hay",
-     "start": 54.24,
-     "end": 54.38
+     "start": 57.44,
+     "end": 57.58
     },
     {
      "w": "que",
-     "start": 54.38,
-     "end": 54.5
+     "start": 57.58,
+     "end": 57.7
     },
     {
      "w": "saber",
-     "start": 54.5,
-     "end": 55.02
+     "start": 57.7,
+     "end": 58.22
     },
     {
      "w": "dónde",
-     "start": 55.02,
-     "end": 55.44
+     "start": 58.22,
+     "end": 58.64
     },
     {
      "w": "fallan,",
-     "start": 55.44,
-     "end": 55.92
+     "start": 58.64,
+     "end": 59.12
     },
     {
      "w": "con",
-     "start": 56.14,
-     "end": 56.4
+     "start": 59.34,
+     "end": 59.6
     },
     {
      "w": "quién",
-     "start": 56.4,
-     "end": 56.8
+     "start": 59.6,
+     "end": 60.0
     },
     {
      "w": "y",
-     "start": 56.92,
-     "end": 57.04
+     "start": 60.1,
+     "end": 60.26
     },
     {
      "w": "en",
-     "start": 57.04,
-     "end": 57.28
+     "start": 60.26,
+     "end": 60.48
     },
     {
      "w": "qué",
-     "start": 57.28,
-     "end": 57.42
+     "start": 60.48,
+     "end": 60.68
     },
     {
      "w": "momentos.",
-     "start": 57.42,
-     "end": 57.82
+     "start": 60.68,
+     "end": 61.02
     }
    ]
   },
   {
    "text": "Y poder explicarle a un cliente por qué se tomó una decisión.",
-   "start": 58.4,
-   "end": 61.72,
+   "start": 61.6,
+   "end": 64.92,
    "words": [
     {
      "w": "Y",
-     "start": 58.4,
-     "end": 58.52
+     "start": 61.6,
+     "end": 61.72
     },
     {
      "w": "poder",
-     "start": 58.52,
-     "end": 58.8
+     "start": 61.72,
+     "end": 62.0
     },
     {
      "w": "explicarle",
-     "start": 58.8,
-     "end": 59.38
+     "start": 62.0,
+     "end": 62.58
     },
     {
      "w": "a",
-     "start": 59.38,
-     "end": 59.42
+     "start": 62.58,
+     "end": 62.62
     },
     {
      "w": "un",
-     "start": 59.42,
-     "end": 59.56
+     "start": 62.62,
+     "end": 62.78
     },
     {
      "w": "cliente",
-     "start": 59.56,
-     "end": 60.04
+     "start": 62.78,
+     "end": 63.24
     },
     {
      "w": "por",
-     "start": 60.04,
-     "end": 60.23
+     "start": 63.24,
+     "end": 63.43
     },
     {
      "w": "qué",
-     "start": 60.34,
-     "end": 60.5
+     "start": 63.54,
+     "end": 63.7
     },
     {
      "w": "se",
-     "start": 60.5,
-     "end": 60.7
+     "start": 63.7,
+     "end": 63.9
     },
     {
      "w": "tomó",
-     "start": 60.7,
-     "end": 60.98
+     "start": 63.9,
+     "end": 64.18
     },
     {
      "w": "una",
-     "start": 60.98,
-     "end": 61.14
+     "start": 64.18,
+     "end": 64.34
     },
     {
      "w": "decisión.",
-     "start": 61.14,
-     "end": 61.72
+     "start": 64.34,
+     "end": 64.92
     }
    ]
   },
   {
    "text": "Lleva dos preguntas a tu próxima reunión:",
-   "start": 62.09,
-   "end": 64.44,
+   "start": 65.29,
+   "end": 67.64,
    "words": [
     {
      "w": "Lleva",
-     "start": 62.09,
-     "end": 62.52
+     "start": 65.29,
+     "end": 65.72
     },
     {
      "w": "dos",
-     "start": 62.52,
-     "end": 62.76
+     "start": 65.72,
+     "end": 65.94
     },
     {
      "w": "preguntas",
-     "start": 62.76,
-     "end": 63.3
+     "start": 65.94,
+     "end": 66.5
     },
     {
      "w": "a",
-     "start": 63.3,
-     "end": 63.4
+     "start": 66.5,
+     "end": 66.59
     },
     {
      "w": "tu",
-     "start": 63.4,
-     "end": 63.52
+     "start": 66.59,
+     "end": 66.73
     },
     {
      "w": "próxima",
-     "start": 63.52,
-     "end": 64.06
+     "start": 66.73,
+     "end": 67.2
     },
     {
      "w": "reunión:",
-     "start": 64.06,
-     "end": 64.44
+     "start": 67.2,
+     "end": 67.64
     }
    ]
   },
   {
    "text": "¿cada cuánto revisamos nuestros modelos?",
-   "start": 64.8,
-   "end": 66.93,
+   "start": 68.0,
+   "end": 70.13,
    "words": [
     {
      "w": "¿cada",
-     "start": 64.8,
-     "end": 65.05
+     "start": 68.0,
+     "end": 68.25
     },
     {
      "w": "cuánto",
-     "start": 65.16,
-     "end": 65.6
+     "start": 68.37,
+     "end": 68.8
     },
     {
      "w": "revisamos",
-     "start": 65.6,
-     "end": 66.14
+     "start": 68.8,
+     "end": 69.34
     },
     {
      "w": "nuestros",
-     "start": 66.14,
-     "end": 66.58
+     "start": 69.34,
+     "end": 69.66
     },
     {
      "w": "modelos?",
-     "start": 66.58,
-     "end": 66.93
+     "start": 69.66,
+     "end": 70.13
     }
    ]
   },
   {
    "text": "¿Y podríamos explicar una decisión si nos la piden?",
-   "start": 67.4,
-   "end": 70.49,
+   "start": 70.58,
+   "end": 73.69,
    "words": [
     {
      "w": "¿Y",
-     "start": 67.4,
-     "end": 67.68
+     "start": 70.58,
+     "end": 70.88
     },
     {
      "w": "podríamos",
-     "start": 67.82,
-     "end": 68.48
+     "start": 71.04,
+     "end": 71.68
     },
     {
      "w": "explicar",
-     "start": 68.48,
-     "end": 68.98
+     "start": 71.68,
+     "end": 72.18
     },
     {
      "w": "una",
-     "start": 68.98,
-     "end": 69.24
+     "start": 72.18,
+     "end": 72.44
     },
     {
      "w": "decisión",
-     "start": 69.24,
-     "end": 69.72
+     "start": 72.44,
+     "end": 72.94
     },
     {
      "w": "si",
-     "start": 69.72,
-     "end": 69.86
+     "start": 72.94,
+     "end": 73.06
     },
     {
      "w": "nos",
-     "start": 69.86,
-     "end": 70.0
+     "start": 73.06,
+     "end": 73.2
     },
     {
      "w": "la",
-     "start": 70.0,
-     "end": 70.09
+     "start": 73.2,
+     "end": 73.38
     },
     {
      "w": "piden?",
-     "start": 70.18,
-     "end": 70.49
+     "start": 73.38,
+     "end": 73.69
     }
    ]
   },
   {
    "text": "Porque un modelo que no se actualiza evalúa el presente con el mapa del pasado.",
-   "start": 70.84,
-   "end": 75.46,
+   "start": 74.04,
+   "end": 78.66,
    "words": [
     {
      "w": "Porque",
-     "start": 70.84,
-     "end": 71.24
+     "start": 74.04,
+     "end": 74.44
     },
     {
      "w": "un",
-     "start": 71.24,
-     "end": 71.32
+     "start": 74.44,
+     "end": 74.52
     },
     {
      "w": "modelo",
-     "start": 71.32,
-     "end": 71.8
+     "start": 74.52,
+     "end": 75.0
     },
     {
      "w": "que",
-     "start": 71.8,
-     "end": 72.02
+     "start": 75.0,
+     "end": 75.2
     },
     {
      "w": "no",
-     "start": 72.02,
-     "end": 72.18
+     "start": 75.2,
+     "end": 75.36
     },
     {
      "w": "se",
-     "start": 72.18,
-     "end": 72.24
+     "start": 75.36,
+     "end": 75.46
     },
     {
      "w": "actualiza",
-     "start": 72.24,
-     "end": 72.86
+     "start": 75.46,
+     "end": 76.06
     },
     {
      "w": "evalúa",
-     "start": 72.96,
-     "end": 73.4
+     "start": 76.16,
+     "end": 76.6
     },
     {
      "w": "el",
-     "start": 73.4,
-     "end": 73.52
+     "start": 76.6,
+     "end": 76.73
     },
     {
      "w": "presente",
-     "start": 73.52,
-     "end": 74.17
+     "start": 76.73,
+     "end": 77.36
     },
     {
      "w": "con",
-     "start": 74.17,
-     "end": 74.36
+     "start": 77.36,
+     "end": 77.56
     },
     {
      "w": "el",
-     "start": 74.36,
-     "end": 74.54
+     "start": 77.56,
+     "end": 77.72
     },
     {
      "w": "mapa",
-     "start": 74.54,
-     "end": 74.88
+     "start": 77.72,
+     "end": 78.1
     },
     {
      "w": "del",
-     "start": 74.88,
-     "end": 75.04
+     "start": 78.1,
+     "end": 78.23
     },
     {
      "w": "pasado.",
-     "start": 75.04,
-     "end": 75.46
+     "start": 78.23,
+     "end": 78.66
     }
    ]
   }

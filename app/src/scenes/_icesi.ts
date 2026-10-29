@@ -34,6 +34,8 @@ export function mixHex(a: string, b: string, k: number, alpha = 1) {
 // ------------------------------------------------------------------ footer (on every plate)
 /** Identification footer. Change the trend / insight numbers here. */
 export const FOOTER = ['Foresight', 'ACH Q2 2026', 'Tendencia X', 'Insight X'];
+/** Carátula de inicio y de cierre (s0_portada y s8_final): cambia aquí el capítulo, el insight y el título. */
+export const CARATULA = { capitulo: 'Capítulo X', insight: 'Insight X', titulo: 'El mapa del pasado', cliente: 'ACH · Q2 2026' };
 
 // ------------------------------------------------------------------ type: Plus Jakarta Sans
 let fontsReady: Promise<void> | null = null;
@@ -392,6 +394,8 @@ export abstract class Plate extends Scene {
   prevBg?: string;
   revealFrom: P = pt(960, 540);
   revealDur = 0.55;
+  /** Show the footer pill on this plate (off on the title cards). */
+  footer = true;
   override async init() {
     await loadJakarta();
     this.S = new Script(this.ctx.lyrics);
@@ -423,15 +427,15 @@ export abstract class Plate extends Scene {
     } else ov = this.draw(c, t, f);
     c.restore();
     if (SCRAP.on) paperOverlay(c);
-    drawFooter(c, f.t);
+    if (this.footer) drawFooter(c, f.t, (this.ctx.lyrics.lines[0]?.start ?? 0.9) - 0.5);
     this.ctx.comp.draw(this.ctx.renderer, this.L.upload(), out, { mode: 'replace' });
     return { bloom: 0, halation: 0, ca: 0, grain: 0, vignette: 0, hud: 0, flat: 1, ...(ov ?? {}) };
   }
 }
 
 /** Small pill bottom-left: Foresight · ACH Q2 2026 · Tendencia X · Insight X. Readable on blue and on white. */
-export function drawFooter(c: CanvasRenderingContext2D, t: number) {
-  const k = clamp((t - 0.4) / 0.5);
+export function drawFooter(c: CanvasRenderingContext2D, t: number, from = 0.4) {
+  const k = clamp((t - from) / 0.5);
   if (k <= 0) return;
   const size = 22, padX = 22, h = 44, x = 40, y = 1080 - 40 - h;
   c.save(); c.globalAlpha = ease.outCubic(k);

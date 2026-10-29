@@ -11,6 +11,8 @@ export default class S1 extends Plate {
 
   override setup() {
     const S = this.S;
+    this.prevBg = C.azul; // opens over the cover with a circle reveal
+    this.tTitle = this.ctx.start + 0.3;
     this.tNote = S.word('no se actualiza hace', 'hace').start;
     this.tGone = S.word('ya no existen', 'calles').start;
     this.tStop = this.tGone + 0.45;
@@ -18,7 +20,8 @@ export default class S1 extends Plate {
   }
 
   carK(t: number) {
-    const u = ease.inOutCubic(clamp((t - 0.35) / (this.tStop - 0.35)));
+    const t0 = this.ctx.start + 0.35;
+    const u = ease.inOutCubic(clamp((t - t0) / (this.tStop - t0)));
     let k = MAP.stopK * u;
     const d = t - this.tStop;
     if (d > 0) k += 0.008 * Math.sin(d * 16) * Math.exp(-d * 7); // small rebound
@@ -34,7 +37,7 @@ export default class S1 extends Plate {
 
     // map
     const gone = ease.outCubic(clamp((t - this.tGone) / 0.6));
-    const mapIn = inn(t, 0, 0.5);
+    const mapIn = inn(t, this.ctx.start, 0.5);
     drawStreets(c, gone, mapIn);
     // planned route (dashed, pale) and the travelled part (solid)
     c.save();
@@ -48,14 +51,14 @@ export default class S1 extends Plate {
     // destination: bobbing pin with a slow pulse
     const dst = MAP.route[MAP.route.length - 1]!;
     for (let k = 0; k < 4; k++) ripple(c, dst.x, dst.y, t, 0.6 + k * 1.6, hexA(C.azul, 0.6), 16, 70, 1.4);
-    at(c, dst.x, dst.y - 40 + float(t, 0, 5, 2.4), { s: pop(t, 0.5) }, () => icon.pin(c, 70, C.azul, true));
+    at(c, dst.x, dst.y - 40 + float(t, 0, 5, 2.4), { s: pop(t, this.ctx.start + 0.5) }, () => icon.pin(c, 70, C.azul, true));
     // road closed sign on the vanished street
     const g = MAP.gone;
     const gx = (g.x0 + g.x1) / 2;
     ripple(c, gx, g.y, t, this.tGone + 0.3, C.naranja, 40, 140, 0.8);
     at(c, gx, g.y, { s: pop(t, this.tGone + 0.25, 0.5) }, () => glow(c, hexA(C.naranja, 0.6), 24, () => icon.roadClosed(c, 92)));
     // the car, with its headlights
-    at(c, car.x, car.y, { r: car.a, s: pop(t, 0.15) }, () => {
+    at(c, car.x, car.y, { r: car.a, s: pop(t, this.ctx.start + 0.15) }, () => {
       const g2 = c.createLinearGradient(40, 0, 210, 0);
       g2.addColorStop(0, hexA(C.amarillo, 0.55)); g2.addColorStop(1, hexA(C.amarillo, 0));
       c.fillStyle = g2; c.beginPath(); c.moveTo(40, -18); c.lineTo(210, -62); c.lineTo(210, 62); c.lineTo(40, 18); c.closePath(); c.fill();
